@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
+.menu {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.menu-botton {
+  margin-top: 20px;
+  margin-right: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.menu-icon {
+  height: 100px;
+  width: 100px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.make-or-join-room {
+  display: flex;
+  justify-content: center;
+}
+
+.make-room-gourp {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-weight: bold;
+  font-size: x-large;
+  margin-top: 10%;
+  margin-right: 120px;
 }
 
-.App-link {
-  color: #61dafb;
+.join-room-gourp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  font-size: x-large;
+  margin-top: 10%;
+  margin-left: 120px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.make-room-button {
+  margin-top: 5%;
+  margin-bottom: 15px;
+}
+
+.join-room-button {
+  margin-top: 5%;
+  margin-bottom: 15px;
 }
