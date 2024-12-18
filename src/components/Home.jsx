@@ -1,6 +1,16 @@
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+
+  const navigate = useNavigate();
+  const handleRoomMake = () => {
+    navigate('/room-make')
+  }
+  const handleRoomJoin = () => {
+    navigate('/room-join')
+  }
+
   return (
     <div>
       <div className="menu">
@@ -25,7 +35,7 @@ export default function Home() {
       </div>
       <div className="make-or-join-room">
         <div className="make-room-gourp">
-          <button className="make-room-button">
+          <button className="make-room-button" onClick={handleRoomMake}>
             <img src="make-room-icon.png" />
           </button>
           <div>
@@ -33,7 +43,7 @@ export default function Home() {
           </div>
         </div>
         <div className="join-room-gourp">
-          <button className="join-room-button">
+          <button className="join-room-button" onClick={handleRoomJoin}>
             <img src="join-room-icon.png" />
           </button>
           <div>
