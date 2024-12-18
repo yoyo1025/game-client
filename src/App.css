@@ -1,38 +1,127 @@
-.App {
-  text-align: center;
+.menu {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.menu-item {
+  position: relative;
+  margin-right: 30px;
+  margin-top: 30px;
+  text-align: center; /* アイコンと文字を中央揃え */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.menu-botton {
+  margin-top: 20px;
+  margin-right: 30px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.menu-icon {
+  height: 100px;
+  width: 100px;
+}
+
+.menu-description {
+  position: absolute;
+  top: 120%; /* ボタンの下に配置 */
+  left: 40%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  white-space: nowrap;
+  display: none; /* 通常は非表示 */
+}
+
+.menu-item:hover .menu-description {
+  display: block; /* ホバー時に表示 */
+}
+
+.make-or-join-room {
+  display: flex;
+  justify-content: center;
+}
+
+.make-room-gourp {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-weight: bold;
+  font-size: x-large;
+  margin-top: 10%;
+  margin-right: 120px;
 }
 
-.App-link {
-  color: #61dafb;
+.join-room-gourp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  font-size: x-large;
+  margin-top: 10%;
+  margin-left: 120px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.make-room-button {
+  margin-top: 5%;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.join-room-button {
+  margin-top: 5%;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 共通ボタンスタイル */
+.menu-botton,
+.make-room-button,
+.join-room-button {
+  margin-top: 20px;
+  margin-right: 30px;
+  border-radius: 10px;
+  background: #f0f0f0; /* 初期背景色 */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* アニメーションを追加 */
+}
+
+/* ホバー時のスタイル */
+.menu-botton:hover,
+.make-room-button:hover,
+.join-room-button:hover {
+  background: #d0d0d0; /* ホバー時の背景色 */
+  transform: scale(1.1); /* ホバー時に拡大 */
+}
+
+/* クリック時のスタイル */
+.menu-botton:active,
+.make-room-button:active,
+.join-room-button:active {
+  background: #a0a0a0; /* クリック時の背景色 */
+  transform: scale(0.90); /* クリック時に縮小 */
+}
+
+/* アイコンサイズは変更なし */
+.menu-icon {
+  height: 100px;
+  width: 100px;
+}
+
+.player-info {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
 }
