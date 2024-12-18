@@ -51,6 +51,12 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="player-info">
+        <div>
+          <p>ID: BP12345</p>
+          <p>Name: シバウラ太郎</p>
+        </div>
+      </div>
     </div>
   );
 }
