@@ -1,8 +1,9 @@
+import Square from './Square'
 
 export default function Field() {
   return(
     <div>
-      フィールドです
+      <Square></Square>
     </div>
   );
 }

@@ -1,8 +1,9 @@
+import Field from "./Field";
 
 export default function Battle() {
   return(
     <div>
-      バトル画面です
+      <Field></Field>
     </div>
   );
 }

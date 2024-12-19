@@ -1,8 +1,8 @@
+import "../Game.css"
 
 export default function Square() {
+
   return(
-    <div>
-      Squareです
-    </div>
+      <button className="square"></button>
   );
 }

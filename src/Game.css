@@ -1,0 +1,20 @@
+.square {
+  padding: 2%;
+  background-color: rgb(251, 217, 206);
+  border-radius: 5px; /* ボタンの角を少し丸く */
+  border: solid;
+  cursor: pointer; /* ホバー時にポインタ表示 */
+  transition: background-color 0.1s ease, transform 0.1s ease; /* なめらかなアニメーション */
+}
+
+/* ホバー時のフィードバック */
+.square:hover {
+  background-color: rgb(255, 200, 180); /* ホバー時に少し色を変える */
+  transform: scale(1.02); /* 少し拡大 */
+}
+
+/* クリック時のフィードバック */
+.square:active {
+  background-color: rgb(230, 150, 130); /* 押したときに濃い色に */
+  transform: scale(0.97); /* 押し込まれたように縮小 */
+}
