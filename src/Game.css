@@ -1,10 +1,21 @@
+.battle-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98vh; /* ビューポート全体の高さ */
+  width: 98vw; /* ビューポート全体の幅 */
+  background-color: #f0f0f0; /* 背景色を指定（任意） */
+}
+
 .square {
-  padding: 2%;
+  padding: 0;
+  width: 100%; /* セルをグリッドの大きさに合わせる */
+  height: 100%; /* セルをグリッドの大きさに合わせる */
   background-color: rgb(251, 217, 206);
-  border-radius: 5px; /* ボタンの角を少し丸く */
-  border: solid;
-  cursor: pointer; /* ホバー時にポインタ表示 */
-  transition: background-color 0.1s ease, transform 0.1s ease; /* なめらかなアニメーション */
+  border: 2px solid #515050; 
+  border-radius: 3px;
+  cursor: pointer; /* ポインタ表示 */
+  transition: background-color 0.1s ease, transform 0.1s ease;
 }
 
 /* ホバー時のフィードバック */
@@ -17,4 +28,14 @@
 .square:active {
   background-color: rgb(230, 150, 130); /* 押したときに濃い色に */
   transform: scale(0.97); /* 押し込まれたように縮小 */
+}
+
+.field-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr); /* 9列 */
+  grid-template-rows: repeat(9, 1fr); /* 9行 */
+  gap: 1px; /* マス目間のスペース */
+  width: 630px; /* 全体の幅を指定 */
+  height: 630px; /* 全体の高さを指定 */
+  background-color: #ffffff; /* 背景色 */
 }
