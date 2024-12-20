@@ -11,7 +11,13 @@ export default function Field() {
   return (
       <div className="field-container">
         {squares.map((_, index) => (
-          <Square key={index} />
+          <Square 
+            key={index} 
+            isRed={index === 10}
+            isYellow={index === 16}
+            isGreen={index === 64}
+            isBlue={index === 70}
+          />
         ))}
       </div>
   );

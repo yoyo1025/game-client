@@ -30,6 +30,63 @@
   transform: scale(0.97); /* 押し込まれたように縮小 */
 }
 
+.square-red {
+  background-color: rgb(255, 112, 112); /* 赤色 */
+}
+
+.square-red:hover {
+  background-color: rgb(255, 74, 74); /* ホバー時に少し色を変える */
+  transform: scale(1.02); /* 少し拡大 */
+}
+
+.square-red:active {
+  background-color: rgb(255, 0, 0); /* 押したときに濃い色に */
+  transform: scale(0.97); /* 押し込まれたように縮小 */
+}
+
+.square-yellow {
+  background-color: rgb(255, 241, 134);
+}
+
+.square-yellow:hover {
+  background-color: rgb(231, 255, 74); /* ホバー時に少し色を変える */
+  transform: scale(1.02); /* 少し拡大 */
+}
+
+.square-yellow:active {
+  background-color: rgb(255, 234, 4); /* 押したときに濃い色に */
+  transform: scale(0.97); /* 押し込まれたように縮小 */
+}
+
+
+.square-green {
+  background-color: rgb(135, 222, 135);
+}
+
+.square-green:hover {
+  background-color: rgb(85, 222, 85); /* ホバー時に少し色を変える */
+  transform: scale(1.02); /* 少し拡大 */
+}
+
+.square-green:active {
+  background-color: rgb(3, 203, 3); /* 押したときに濃い色に */
+  transform: scale(0.97); /* 押し込まれたように縮小 */
+}
+
+.square-blue {
+  background-color: rgb(137, 137, 255);
+}
+
+.square-blue:hover {
+  background-color: rgb(89, 89, 254); /* ホバー時に少し色を変える */
+  transform: scale(1.02); /* 少し拡大 */
+}
+
+.square-blue:active {
+  background-color: rgb(22, 22, 255); /* 押したときに濃い色に */
+  transform: scale(0.97); /* 押し込まれたように縮小 */
+}
+
 .field-container {
   display: grid;
   grid-template-columns: repeat(9, 1fr); /* 9列 */
