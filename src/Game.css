@@ -7,6 +7,36 @@
   background-color: #f0f0f0; /* 背景色を指定（任意） */
 }
 
+.dice {
+  padding: 0;
+  width: 300px;
+  height: 300px;
+  border: 2px solid #515050; 
+  border-radius: 15px;
+  cursor: pointer; /* ポインタ表示 */
+}
+
+.event-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  width: 300px;
+  height: 800px;
+  border: 2px solid #515050; 
+  border-radius: 15px;
+  cursor: pointer; /* ポインタ表示 */
+}
+
+.event-button {
+  margin-top: 20%;
+  margin-bottom: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 3%;
+  font-size: large;
+}
+
 .square {
   padding: 0;
   width: 100%; /* セルをグリッドの大きさに合わせる */
