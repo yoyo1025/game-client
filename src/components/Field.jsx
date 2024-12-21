@@ -3,22 +3,32 @@ import "../Game.css";
 
 export default function Field() {
   const gridSize = 9; // 9×9 のマス目サイズ
-  const totalSquares = gridSize * gridSize; // 合計セル数
-  
-  // マス目を生成
-  const squares = Array.from({ length: totalSquares });
 
   return (
-      <div className="field-container">
-        {squares.map((_, index) => (
-          <Square 
-            key={index} 
-            isRed={index === 10}
-            isYellow={index === 16}
-            isGreen={index === 64}
-            isBlue={index === 70}
-          />
-        ))}
-      </div>
+    <div className="field-container">
+      {Array.from({ length: gridSize }).map((_, rowIndex) =>
+        Array.from({ length: gridSize }).map((_, colIndex) => {
+          // 座標は左下のマスを原点としx. y >= 0
+          const x = colIndex; // x座標
+          const y = gridSize - rowIndex - 1; // y座標
+          const isGreen = x === 1 && y === 1; // (1, 1) イベントマス緑
+          const isBlue = x === 7 && y === 1; // (7, 1) イベントマス青
+          const isRed = x === 1 && y === 7; // (1, 7) イベントマス赤
+          const isYellow = x === 7 && y === 7; // (7, 7) イベントマス黄
+
+          return (
+            <Square
+              key={`${x},${y}`}
+              x={x}
+              y={y}
+              isGreen={isGreen}
+              isBlue={isBlue}
+              isRed={isRed}
+              isYellow={isYellow}
+            />
+          );
+        })
+      )}
+    </div>
   );
 }
