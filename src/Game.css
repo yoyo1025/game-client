@@ -43,6 +43,16 @@
   height:90%;
 }
 
+.dice:hover {
+  background: #eeeeee; /* クリック時の背景色 */
+  transition: background-color 0.3s ease;
+}
+
+.dice-picture:active {
+  transform: scale(1.1); /* ホバー時に拡大 */
+  transition: transform 0.1s ease; /* アニメーションを追加 */
+}
+
 .event-container {
   background-color: #fff;
   display: flex;
