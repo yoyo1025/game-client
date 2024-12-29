@@ -2,10 +2,25 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 98vh; /* ビューポート全体の高さ */
-  width: 100vw; /* ビューポート全体の幅 */
-  background-color: #f0f0f0; /* 背景色を指定（任意） */
+  height: 96vh; /* ビューポート全体の高さ */
+  width: 99vw; /* ビューポート全体の幅 */
+  background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff); /* グラデーション色 */
+  background-size: 400% 400%; /* グラデーションの大きさ */
+  animation: gradient 10s ease infinite; /* アニメーションを適用 */
 }
+  
+/* グラデーションアニメーションの定義 */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%; /* 初期位置 */
+  }
+  50% {
+    background-position: 100% 50%; /* 中間位置 */
+  }
+  100% {
+    background-position: 0% 50%; /* 終了位置 */
+  }
+}  
 
 .dice {
   padding: 0;
