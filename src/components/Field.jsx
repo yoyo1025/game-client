@@ -1,8 +1,39 @@
 import Square from './Square';
 import "../Game.css";
 
+const palyerPositions = {
+  "players": [
+    {
+      "id": "player1",
+      "x": 2,
+      "y": 2,
+      "icon": "player1.svg"
+    },
+    {
+      "id": "player2",
+      "x": 6,
+      "y": 2,
+      "icon": "player2.svg"
+    },
+    {
+      "id": "demon1",
+      "x": 2,
+      "y": 6,
+      "icon": "gooey-demon.svg"
+    },
+    {
+      "id": "player3",
+      "x": 6,
+      "y": 6,
+      "icon": "player3.svg"
+    }
+  ]
+};
+
+
 export default function Field() {
   const gridSize = 9; // 9×9 のマス目サイズ
+  const players = palyerPositions.players;
 
   return (
     <div className="field-container">
@@ -16,6 +47,9 @@ export default function Field() {
           const isRed = x === 1 && y === 7; // (1, 7) イベントマス赤
           const isYellow = x === 7 && y === 7; // (7, 7) イベントマス黄
 
+          // (x, y) にいるプレイヤーを検索
+          const occupant = players.find(player => player.x === x && player.y === y);
+
           return (
             <Square
               key={`${x},${y}`}
@@ -25,6 +59,7 @@ export default function Field() {
               isBlue={isBlue}
               isRed={isRed}
               isYellow={isYellow}
+              occupant={occupant} // 該当のプレイヤー情報をそのまま渡す
             />
           );
         })
