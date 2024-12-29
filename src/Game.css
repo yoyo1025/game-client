@@ -213,9 +213,19 @@
   width: 40px;
 }
 
+@keyframes blink {
+  0%, 100% {
+    opacity: 1; /* 完全に表示 */
+  }
+  50% {
+    opacity: 0; /* 消える */
+  }
+}
+
 .is-playing {
   height: 40px;
   width: 40px;
+  animation: blink 2s infinite; /* 1秒ごとに無限ループで点滅 */
 }
 
 .player-status:hover {

@@ -12,7 +12,7 @@ export default function PlayerStatus() {
           <div className="player-points">10pt</div>
         </div>
         <div className="player-turn-indicator">
-          <img className="is-playing" src="game-controller.svg"/>
+          {/* <img className="is-playing" src="game-controller.svg"/> */}
         </div>
       </div>
       <div className="player-status">
@@ -36,7 +36,7 @@ export default function PlayerStatus() {
           <div className="player-points">8pt</div>
         </div>
         <div className="player-turn-indicator">
-          <img className="is-playing" src="game-controller.svg"/>
+          {/* <img className="is-playing" src="game-controller.svg"/> */}
         </div>
       </div>
       <div className="player-status">
@@ -47,7 +47,7 @@ export default function PlayerStatus() {
           </div>
         </div>
         <div className="player-turn-indicator">
-          <img className="is-playing" src="game-controller.svg"/>
+          {/* <img className="is-playing" src="game-controller.svg"/> */}
         </div>
       </div>
     </div>
