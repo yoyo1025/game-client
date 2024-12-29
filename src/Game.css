@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 99vh; /* ビューポート全体の高さ */
-  width: 99vw; /* ビューポート全体の幅 */
+  height: 100vh; /* ビューポート全体の高さ */
+  width: 100vw; /* ビューポート全体の幅 */
   background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff); /* グラデーション色 */
   background-size: 400% 400%; /* グラデーションの大きさ */
   animation: gradient 10s ease infinite; /* アニメーションを適用 */
