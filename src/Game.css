@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
 .battle-screen {
   display: flex;
   justify-content: space-around;
@@ -56,6 +58,7 @@
 }
 
 .event-button {
+  font-family: 'Zen Maru Gothic', sans-serif;
   border-radius: 10px;
   width: 80%;
   height: 15%;
@@ -193,6 +196,7 @@
 }
 
 .player-info {
+  font-family: 'Zen Maru Gothic', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
