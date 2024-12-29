@@ -1,40 +1,52 @@
 .battle-screen {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 98vh; /* ビューポート全体の高さ */
-  width: 98vw; /* ビューポート全体の幅 */
+  width: 100vw; /* ビューポート全体の幅 */
   background-color: #f0f0f0; /* 背景色を指定（任意） */
 }
 
 .dice {
   padding: 0;
-  width: 300px;
-  height: 300px;
+  height: 28vh;
+  width: 28vh;
   border: 2px solid #515050; 
   border-radius: 15px;
   cursor: pointer; /* ポインタ表示 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.dice-picture {
+  object-fit:contain;
+  width:90%;
+  height:90%;
 }
 
 .event-container {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  height: 60vh;
   padding: 0;
-  width: 300px;
-  height: 800px;
   border: 2px solid #515050; 
   border-radius: 15px;
   cursor: pointer; /* ポインタ表示 */
+  width: 18vw; /* ビューポート全体の幅 */
 }
 
 .event-button {
-  margin-top: 20%;
-  margin-bottom: 20%;
-  margin-left: 10%;
-  margin-right: 10%;
-  padding: 3%;
+  border-radius: 10px;
+  width: 80%;
+  height: 15%;
   font-size: large;
+  font-weight: bold;
+  background-color: #ffdede;
 }
 
 .square {
@@ -122,7 +134,64 @@
   grid-template-columns: repeat(9, 1fr); /* 9列 */
   grid-template-rows: repeat(9, 1fr); /* 9行 */
   gap: 1px; /* マス目間のスペース */
-  width: 630px; /* 全体の幅を指定 */
-  height: 630px; /* 全体の高さを指定 */
+  height: 90vh; /* ビューポート全体の高さ */
+  width: 43vw; /* ビューポート全体の幅 */
   background-color: #ffffff; /* 背景色 */
+}
+
+.dice-event {
+  height: 90vh; /* ビューポート全体の高さ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 18vw; /* ビューポート全体の幅 */
+}
+
+.player-status-container {
+  display: grid;
+  grid-template-rows: repeat(4, auto);
+  gap: 20px;
+  border: 2px solid black;
+  padding: 8px;
+  height: 90vh; /* ビューポート全体の高さ */
+  width: 18vw; /* ビューポート全体の幅 */
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.player-status {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  border: 1px solid black;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+}
+
+.player-status:hover {
+  background-color: rgb(185, 255, 221); /* ホバー時に少し色を変える */
+  transform: scale(1.02); /* 少し拡大 */
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.player-name {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.player-points {
+  font-size: 20px;
+}
+
+.player-turn-indicator {
+  font-size: 30px;
+  text-align: center;
+  color: black;
 }
