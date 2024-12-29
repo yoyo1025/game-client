@@ -28,13 +28,15 @@
   padding: 0;
   height: 28vh;
   width: 28vh;
-  border: 2px solid #515050; 
   border-radius: 15px;
   cursor: pointer; /* ポインタ表示 */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.6); /* 半透明の白色 */
+  backdrop-filter: blur(10px); /* ガラス効果を適用 */
+  border: 2px solid rgba(255, 255, 255, 1.0); /* 半透明の境界線 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
 }
 
 .dice-picture {
@@ -54,25 +56,28 @@
 }
 
 .event-container {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.6); /* 半透明の白色 */
+  backdrop-filter: blur(10px); /* ガラス効果を適用 */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   height: 60vh;
   padding: 0;
-  border: 2px solid #515050; 
+  border: 2px solid rgba(255, 255, 255, 1.0); /* 半透明の境界線 */
   border-radius: 15px;
   cursor: pointer; /* ポインタ表示 */
   width: 18vw; /* ビューポート全体の幅 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
 }
+
 
 .event-button {
   font-family: 'Zen Maru Gothic', sans-serif;
   border-radius: 10px;
   width: 80%;
   height: 15%;
-  font-size: large;
+  font-size: 23px;
   font-weight: bold;
   background-color: #ffdede;
 }
@@ -186,8 +191,11 @@
   padding: 8px;
   height: 90vh; /* ビューポート全体の高さ */
   width: 18vw; /* ビューポート全体の幅 */
-  background-color: #fff;
   border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.6); /* 半透明の白色 */
+  backdrop-filter: blur(10px); /* ガラス効果を適用 */
+  border: 2px solid rgba(255, 255, 255, 1.0); /* 半透明の境界線 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
 }
 
 .player-status {
@@ -218,7 +226,7 @@
 }
 
 .player-points {
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .player-turn-indicator {
