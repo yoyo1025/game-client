@@ -199,7 +199,10 @@
 }
 
 .player-status {
-  display: grid;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   grid-template-columns: 2fr 1fr;
   align-items: center;
   border: 1px solid black;
@@ -209,9 +212,23 @@
 }
 
 .status-icon {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
+
+.player-upper-row {
+  display: flex;
+  align-items: center; 
+  gap: 8px;            
+}
+
+.player-lower-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 @keyframes blink {
   0%, 100% {
@@ -225,7 +242,7 @@
 .is-playing {
   height: 40px;
   width: 40px;
-  animation: blink 2s infinite; /* 1秒ごとに無限ループで点滅 */
+  animation: blink 2s infinite;
 }
 
 .player-status:hover {
@@ -247,15 +264,4 @@
 
 .player-points {
   font-size: 30px;
-}
-
-.player-turn-indicator {
-  font-size: 30px;
-  text-align: center;
-  color: black;
-}
-
-.demon-icon {
-  height: 50px;
-  width: 50px;
 }
