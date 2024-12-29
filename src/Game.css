@@ -208,6 +208,16 @@
   border-radius: 15px;
 }
 
+.status-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.is-playing {
+  height: 40px;
+  width: 40px;
+}
+
 .player-status:hover {
   background-color: rgb(185, 255, 221); /* ホバー時に少し色を変える */
   transform: scale(1.02); /* 少し拡大 */
