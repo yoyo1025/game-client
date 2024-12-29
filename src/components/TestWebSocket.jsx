@@ -9,20 +9,29 @@ const TestWebSocket = () => {
 
   // WebSocket接続のセットアップ
   useEffect(() => {
+    // SockJS + STOMP を使ってWebSocket接続
     const stompClient = Stomp.over(() => new SockJS("http://localhost:8080/gs-guide-websocket"));
 
+    // 接続時にヘッダー（userIdなど）を渡す場合
+    stompClient.connect(
+      { userId: "myUserId" }, // ここを任意のuserIdに
+      () => {
+        console.log("Connected to WebSocket");
 
-    stompClient.connect({}, () => {
-      console.log("Connected to WebSocket");
+        // /topic/greetingsからのメッセージを購読
+        stompClient.subscribe("/topic/greetings", (msg) => {
+          const receivedMessage = JSON.parse(msg.body);
+          setMessages((prev) => [...prev, receivedMessage.content]);
+        });
 
-      // サーバーからのメッセージを購読
-      stompClient.subscribe("/topic/greetings", (msg) => {
-        const receivedMessage = JSON.parse(msg.body);
-        setMessages((prevMessages) => [...prevMessages, receivedMessage.content]);
-      });
-    });
+        // 切断通知を受け取る購読（オプション）
+        stompClient.subscribe("/topic/user-disconnected", (msg) => {
+          console.log("User disconnected message:", msg.body);
+        });
+      }
+    );
 
-    // クリーンアップ時にWebSocketを切断
+    // アンマウント時に切断
     return () => {
       stompClient.disconnect(() => {
         console.log("Disconnected from WebSocket");
@@ -33,14 +42,13 @@ const TestWebSocket = () => {
   // メッセージ送信
   const sendMessage = () => {
     if (name && message) {
+      // 上のuseEffectで作成した stompClient を再利用するなら
+      // ここでは別のstompClientを作らないように注意する
       const stompClient = Stomp.over(() => new SockJS("http://localhost:8080/gs-guide-websocket"));
-
       stompClient.connect({}, () => {
         stompClient.send("/app/hello", {}, JSON.stringify({ name, message }));
       });
     }
-    console.log("メッセージを送信しました！！");
-    
   };
 
   return (
