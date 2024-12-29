@@ -265,3 +265,17 @@
 .player-points {
   font-size: 30px;
 }
+
+@keyframes ms {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.square-movable {
+  background-color: rgba(81, 220, 192, 0.64);
+  animation: ms 2s infinite;
+}
