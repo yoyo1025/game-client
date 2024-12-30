@@ -4,6 +4,7 @@ export default function Square({
   x, 
   y, 
   occupant,
+  icon,
   isRed, 
   isYellow, 
   isGreen, 
@@ -30,7 +31,7 @@ export default function Square({
       title={`(${x}, ${y})`}
       onClick={displayPoint}
     >
-      {occupant && <img src={occupant.icon} alt={occupant.id} />}
+      {occupant && <img src={icon} alt={icon} />}
     </button>
   );
 }
