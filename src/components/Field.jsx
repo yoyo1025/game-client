@@ -30,19 +30,19 @@ const palyerPositions = {
   ]
 };
 
-const movableData = {
-  "movableSquares": [
-    { "x": 1, "y":  2},
-    { "x": 3, "y":  2},
-    { "x": 2, "y":  3},
-    { "x": 2, "y":  1},
-  ]
-};
+// const movableData = {
+//   "movableSquares": [
+//     { "x": 1, "y":  2},
+//     { "x": 3, "y":  2},
+//     { "x": 2, "y":  3},
+//     { "x": 2, "y":  1},
+//   ]
+// };
 
 export default function Field() {
   const gridSize = 9; // 9×9 のマス目サイズ
   const players = palyerPositions.players;
-  const movableSquares = movableData.movableSquares; 
+  // const movableSquares = movableData.movableSquares; 
 
 
   return (
@@ -62,7 +62,7 @@ export default function Field() {
           const occupant = players.find(player => player.x === x && player.y === y);
 
           // JSONの中に (x, y) が存在すれば移動可能マス
-          const isMovable = movableSquares.some(square => square.x === x && square.y === y);
+          // const isMovable = movableSquares.some(square => square.x === x && square.y === y);
 
           return (
             <Square
@@ -74,7 +74,7 @@ export default function Field() {
               isRed={isRed}
               isYellow={isYellow}
               occupant={occupant} // 該当のプレイヤー情報をそのまま渡す
-              isMovable={isMovable}
+              // isMovable={isMovable}
             />
           );
         })

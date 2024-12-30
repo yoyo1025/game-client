@@ -54,7 +54,7 @@ export default function Battle() {
         <Dice/>
         <Event />
       </div>
-      <Field/>
+      <Field playerPositions={playerPositions}/>
       <PlayerStatus players={players}/>
     </div>
   );
