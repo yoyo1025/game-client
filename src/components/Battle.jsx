@@ -55,7 +55,7 @@ export default function Battle() {
         <Event />
       </div>
       <Field/>
-      <PlayerStatus/>
+      <PlayerStatus players={players}/>
     </div>
   );
 }

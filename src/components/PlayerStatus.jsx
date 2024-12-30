@@ -1,47 +1,39 @@
 import "../Game.css";
 
-export default function PlayerStatus() {
+export default function PlayerStatus({ players }) {
+  const playerIcons = [
+    "player1-status-icon.svg",
+    "player2-status-icon.svg",
+    "player3-status-icon.svg",
+    "demon-status-icon.svg",
+  ];
+
   return (
     <div className="player-status-container">
-      <div className="player-status">
-        <div className="player-upper-row">
-          <img className="status-icon" src="player1-status-icon.svg" alt="プレイヤー1アイコン" />
-          <div className="player-name">プレイヤー1</div>
+      {playerIcons.map((icon, index) => (
+        <div className="player-status" key={index}>
+          <div className="player-upper-row">
+            <img className="status-icon" src={icon} alt={`プレイヤー${index + 1}アイコン`} />
+            <div className="player-name">
+              {players.length > index ? players[index].name : "Loading..."}
+            </div>
+          </div>
+          <div className="player-lower-row">
+            {players.length > index && players[index].points !== undefined ? (
+              <>
+                <div className="player-points">{players[index].points}pt</div>
+                {index < 3 && (
+                  <img
+                    className="is-playing"
+                    src="game-controller.svg"
+                    alt="操作中アイコン"
+                  />
+                )}
+              </>
+            ) : null}
+          </div>
         </div>
-        <div className="player-lower-row">
-          <div className="player-points">4pt</div>
-          <img className="is-playing" src="game-controller.svg" alt="操作中アイコン" />
-        </div>
-      </div>
-      <div className="player-status">
-        <div className="player-upper-row">
-          <img className="status-icon" src="player2-status-icon.svg" alt="プレイヤー2アイコン" />
-          <div className="player-name">プレイヤー2</div>
-        </div>
-        <div className="player-lower-row">
-          <div className="player-points">12pt</div>
-          {/* <img className="is-playing" src="game-controller.svg" alt="操作中アイコン" /> */}
-        </div>
-      </div>
-      <div className="player-status">
-        <div className="player-upper-row">
-          <img className="status-icon" src="player3-status-icon.svg" alt="プレイヤー3アイコン" />
-          <div className="player-name">プレイヤー3</div>
-        </div>
-        <div className="player-lower-row">
-          <div className="player-points">10pt</div>
-          {/* <img className="is-playing" src="game-controller.svg" alt="操作中アイコン" /> */}
-        </div>
-      </div>
-      <div className="player-status">
-        <div className="player-upper-row">
-          <img className="status-icon" src="demon-status-icon.svg" alt="鬼アイコン" />
-          <div className="player-name">プレイヤー4</div>
-        </div>
-        <div className="player-lower-row">
-          {/* <img className="is-playing" src="game-controller.svg" alt="操作中アイコン" /> */}
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
