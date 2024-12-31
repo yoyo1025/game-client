@@ -3,6 +3,9 @@ import Dice from "./Dice";
 import Event from "./Event";
 import PlayerStatus from "./PlayerStatus";
 import { useEffect, useState } from "react";
+import SockJS from 'sockjs-client';
+import { Stomp } from "@stomp/stompjs";
+
 
 export default function Battle() {
   const [players, setPlayers] = useState([]); // プレイヤー情報
@@ -14,6 +17,7 @@ export default function Battle() {
     maxTurnReached: false
   }); // ターン情報
   const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
+  const [message, setMessage] = useState(""); // メッセージ内容
 
   const fetchGameState = async () => {
     try {
@@ -40,7 +44,33 @@ export default function Battle() {
   };
 
   useEffect(() => {
+    let stompClient = null;
+    if (!stompClient) {
+      // 初回接続先
+      stompClient = Stomp.over(() => new SockJS("http://localhost:8080/app-websocket"));
+      stompClient.connect({ userId: "myUserId" }, () => {
+        console.log("Connected to WebSocket");
+
+        // /topic/greetingsからのメッセージを購読
+        stompClient.subscribe("/topic/greeting", (msg) => {
+          const receivedMessage = JSON.parse(msg.body);
+          setMessage((prev) => [...prev, receivedMessage.content]);
+        });
+
+        // 切断通知を受け取る購読（オプション）
+        stompClient.subscribe("/topic/user-disconnected", (msg) => {
+          console.log("User disconnected message:", msg.body);
+        });
+      });
+    }
+
     fetchGameState();
+
+    // return () => {
+    //   if (stompClient) {
+    //     stompClient.disconnect();
+    //   }
+    // };
   }, []);
 
   // 状態の変更を監視してコンソールに出力
