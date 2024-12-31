@@ -6,7 +6,13 @@ import { useEffect, useState } from "react";
 
 export default function Battle() {
   const [players, setPlayers] = useState([]); // プレイヤー情報
-  const [turn, setTurn] = useState({ maxTurn: 0, currentTurn: 0, maxTurnReached: false }); // ターン情報
+  const [turn, setTurn] = useState({ 
+    maxTurn: 0, 
+    currentTurn: 0, 
+    currentPlayerIndex: 1, 
+    maxPlayerIndex: 4, 
+    maxTurnReached: false
+  }); // ターン情報
   const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
 
   const fetchGameState = async () => {
@@ -23,6 +29,8 @@ export default function Battle() {
       setTurn({
         maxTurn: data.turn.maxTurn || 0,
         currentTurn: data.turn.currentTurn || 0,
+        currentPlayerIndex: data.turn.currentPlayerIndex || 0,
+        maxPlayerIndex: data.turn.maxPlayerIndex || 0,
         maxTurnReached: data.turn.maxTurnReached || false,
       });
       setPlayerPositions(data.playerPositions || {}); // デフォルト値で空オブジェクトを設定

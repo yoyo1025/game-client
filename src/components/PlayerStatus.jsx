@@ -27,7 +27,7 @@ export default function PlayerStatus({ players, turn }) {
                 {players.length > index && players[index].points !== undefined ? (
                   <>
                     <div className="player-points">{players[index].points}pt</div>
-                    {index < 3 && (
+                    {turn.currentPlayerIndex === index + 1 && (
                       <img
                         className="is-playing"
                         src="game-controller.svg"
