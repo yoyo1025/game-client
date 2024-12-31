@@ -1,6 +1,6 @@
 import "../Game.css";
 
-export default function PlayerStatus({ players, turn }) {
+export default function PlayerStatus({ players, turn, userId }) {
   const playerIcons = [
     "player1-status-icon.svg",
     "player2-status-icon.svg",
@@ -16,7 +16,14 @@ export default function PlayerStatus({ players, turn }) {
         </div>
         <div className="player-status-container">
           {playerIcons.map((icon, index) => (
-            <div className="player-status" key={index}>
+            <div
+              className="player-status"
+              key={index}
+              style={{
+                backgroundColor:
+                  players.length > index && players[index].userId === userId ? "#82e8a6" : "transparent",
+              }}
+            >
               <div className="player-upper-row">
                 <img className="status-icon" src={icon} alt={`プレイヤー${index + 1}アイコン`} />
                 <div className="player-name">

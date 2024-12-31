@@ -2,9 +2,10 @@ import Field from "./Field";
 import Dice from "./Dice";
 import Event from "./Event";
 import PlayerStatus from "./PlayerStatus";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SockJS from 'sockjs-client';
 import { Stomp } from "@stomp/stompjs";
+import { UserContext } from "./Home";
 
 
 export default function Battle() {
@@ -18,6 +19,7 @@ export default function Battle() {
   }); // ターン情報
   const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
   const [message, setMessage] = useState(""); // メッセージ内容
+  const user = useContext(UserContext);
 
   const fetchGameState = async () => {
     try {
@@ -93,7 +95,7 @@ export default function Battle() {
         <Event />
       </div>
       <Field playerPositions={playerPositions}/>
-      <PlayerStatus players={players} turn={turn}/>
+      <PlayerStatus players={players} turn={turn} userId={user.userId}/>
     </div>
   );
 }
