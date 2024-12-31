@@ -186,10 +186,10 @@
 .player-status-container {
   display: grid;
   grid-template-rows: repeat(4, auto);
-  gap: 20px;
+  gap: 30px;
   border: 2px solid black;
   padding: 8px;
-  height: 90vh; /* ビューポート全体の高さ */
+  height: 83vh; /* ビューポート全体の高さ */
   width: 18vw; /* ビューポート全体の幅 */
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.6); /* 半透明の白色 */

@@ -55,7 +55,7 @@ export default function Battle() {
         <Event />
       </div>
       <Field playerPositions={playerPositions}/>
-      <PlayerStatus players={players}/>
+      <PlayerStatus players={players} turn={turn}/>
     </div>
   );
 }
