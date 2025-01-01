@@ -8,7 +8,16 @@ const playerIcons = [
   { id: 4, icon: "gooey-demon.svg" },
 ];
 
-export default function Field({playerPositions = {}, movableSquares}) {
+export default function Field({
+  playerPositions = {}, 
+  movableSquares, 
+  movable, 
+  setMovable,
+  userId, 
+  currentPlayerIndex,
+  setPlayerPositions,
+  setMovableSquares
+}) {
   const gridSize = 9; // 9×9 のマス目サイズ
   
   // playerPositionsを配列に変換
@@ -17,6 +26,31 @@ export default function Field({playerPositions = {}, movableSquares}) {
     x: position.x,
     y: position.y,
   }));
+
+  const handleMove = async (x, y) => {
+    console.log(`Moving to (${x}, ${y})`);
+    try {
+      const res = await fetch("http://localhost:8080/api/move", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "userId": userId,
+          "currentPlayerIndex": currentPlayerIndex,
+          "targetPosition": { "x": x, "y": y }
+        })
+      });
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Error from server:", errorData.error);
+        alert(errorData.error);
+        return;
+      }
+    } catch (error) {
+      console.error('Error sending move data:', error);
+    }
+  };
 
   return (
     <div className="field-container">
@@ -38,7 +72,7 @@ export default function Field({playerPositions = {}, movableSquares}) {
           const occupantIcon = occupant ? playerIcons.find(icon => icon.id === occupant.id)?.icon : null;
           
           // JSONの中に (x, y) が存在すれば移動可能マス
-          const isMovable = movableSquares.some(square => square.x === x && square.y === y);
+          const isMovable = movableSquares.length > 0 && movableSquares.some(square => square.x === x && square.y === y);
 
           return (
             <Square
@@ -52,6 +86,7 @@ export default function Field({playerPositions = {}, movableSquares}) {
               occupant={occupant} // 該当のプレイヤー情報をそのまま渡す
               icon={occupantIcon}
               isMovable={isMovable}
+              onClickMove={handleMove}
             />
           );
         })

@@ -31,9 +31,11 @@ export default function PlayerStatus({ players, turn, userId }) {
                 </div>
               </div>
               <div className="player-lower-row">
-                {players.length > index && players[index].points !== undefined ? (
+                {players.length > index && (
                   <>
-                    <div className="player-points">{players[index].points}pt</div>
+                    {players[index].points !== undefined && (
+                      <div className="player-points">{players[index].points}pt</div>
+                    )}
                     {turn.currentPlayerIndex === index + 1 && (
                       <img
                         className="is-playing"
@@ -42,7 +44,7 @@ export default function PlayerStatus({ players, turn, userId }) {
                       />
                     )}
                   </>
-                ) : null}
+                )}
               </div>
             </div>
           ))}

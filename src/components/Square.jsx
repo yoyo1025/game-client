@@ -9,14 +9,20 @@ export default function Square({
   isYellow, 
   isGreen, 
   isBlue, 
-  isMovable 
+  isMovable,
+  onClickMove 
 }) {
-  const displayPoint = () => {
+  const handleClick = () => {
     console.log(`Clicked square at (${x}, ${y})`);
     if (occupant) {
       console.log(`Occupied by: ${occupant.id}`);
     }
-  };
+    if (isMovable) {
+      onClickMove(x, y);
+    } else {
+      console.log(`Square at (${x}, ${y}) is not movable.`);
+    }
+  }
 
   return (
     <button
@@ -29,7 +35,7 @@ export default function Square({
         ${isMovable ? "square-movable" : ""}
       `}
       title={`(${x}, ${y})`}
-      onClick={displayPoint}
+      onClick={handleClick}
     >
       {occupant && <img src={icon} alt={icon} />}
     </button>

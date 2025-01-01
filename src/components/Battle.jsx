@@ -21,6 +21,7 @@ export default function Battle() {
   const [message, setMessage] = useState(""); // メッセージ内容
   const [diceRoll, setDiceRoll] = useState(1);
   const [movableSquares, setMovableSquares] = useState([]);
+  const [movable, setMovable] = useState(false);
   const user = useContext(UserContext);
 
   const fetchDiceResult = async () => {
@@ -135,6 +136,25 @@ export default function Battle() {
           console.log(movableSquares);
           setDiceRoll(diceRoll);
           setMovableSquares(movableSquares);
+          setMovable(movable => !movable);
+        });
+
+        stompClient.subscribe('/topic/newPosition', (message) => {
+          const gameState = JSON.parse(message.body);
+          console.log("Game state received:", gameState);
+
+          // 受け取ったgameStateからReactのStateを更新
+          setPlayers(gameState.players || []);
+          setTurn({
+            maxTurn: gameState.turn.maxTurn || 0,
+            currentTurn: gameState.turn.currentTurn || 0,
+            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+            maxTurnReached: gameState.turn.maxTurnReached || false,
+          });
+          setPlayerPositions(gameState.playerPositions || {});
+          
+          setMovableSquares([]);
         });
 
         // 切断通知を受け取る購読（オプション）
@@ -169,11 +189,27 @@ export default function Battle() {
   return(
     <div className="battle-screen">
       <div className="dice-event">
-        <Dice onDiceRoll={fetchDiceResult} diceRoll={diceRoll}/>
+        <Dice 
+          onDiceRoll={fetchDiceResult} 
+          diceRoll={diceRoll}
+        />
         <Event />
       </div>
-      <Field playerPositions={playerPositions} movableSquares={movableSquares}/>
-      <PlayerStatus players={players} turn={turn} userId={user.userId}/>
+      <Field 
+        playerPositions={playerPositions} 
+        movableSquares={movableSquares} 
+        movable={movable} 
+        setMovable={setMovable}
+        userId={user.userId} 
+        currentPlayerIndex={turn.currentPlayerIndex}
+        setPlayerPositions={setPlayerPositions}
+        setMovableSquares={setMovableSquares}
+      />
+      <PlayerStatus 
+        players={players} 
+        turn={turn} 
+        userId={user.userId}
+      />
     </div>
   );
 }
