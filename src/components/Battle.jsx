@@ -30,13 +30,14 @@ export default function Battle() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          "userId": players[0].userId,
+          "userId": user.userId,
           "currentPlayerIndex": turn.currentPlayerIndex,
         })
       });
       if (!res.ok) {
         const errorData = await res.json();
         console.error("Error from server:", errorData.error);
+        alert(errorData.error)
         return;
       }
   
@@ -120,6 +121,15 @@ export default function Battle() {
             maxTurnReached: gameState.turn.maxTurnReached || false,
           });
           setPlayerPositions(gameState.playerPositions || {});
+        });
+
+        // WebSocket購読部分
+        stompClient.subscribe('/topic/dice', (message) => {
+          console.log("Dice購読");
+          const parseMessage = JSON.parse(message.body);
+          const diceRoll = parseMessage.diceRoll;
+          console.log(diceRoll);
+          setDiceRoll(diceRoll);
         });
 
         // 切断通知を受け取る購読（オプション）
