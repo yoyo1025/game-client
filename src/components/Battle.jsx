@@ -19,7 +19,35 @@ export default function Battle() {
   }); // ターン情報
   const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
   const [message, setMessage] = useState(""); // メッセージ内容
+  const [diceRoll, setDiceRoll] = useState(1);
   const user = useContext(UserContext);
+
+  const fetchDiceResult = async () => {
+    try {
+      const res = await fetch('http://localhost:8080/api/dice',{ 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "userId": players[0].userId,
+          "currentPlayerIndex": turn.currentPlayerIndex,
+        })
+      });
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Error from server:", errorData.error);
+        return;
+      }
+  
+      const data = await res.json();
+      console.log("Dice roll result:", data.diceRoll);
+      setDiceRoll(data.diceRoll);
+      
+    } catch (error) {
+      console.error('Error fetching game data:', error);  
+    }
+  };
 
   const fetchGameStateEarliest = async () => {
     try {
@@ -126,7 +154,7 @@ export default function Battle() {
   return(
     <div className="battle-screen">
       <div className="dice-event">
-        <Dice/>
+        <Dice onDiceRoll={fetchDiceResult} diceRoll={diceRoll}/>
         <Event />
       </div>
       <Field playerPositions={playerPositions}/>
