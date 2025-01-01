@@ -8,16 +8,7 @@ const playerIcons = [
   { id: 4, icon: "gooey-demon.svg" },
 ];
 
-// const movableData = {
-//   "movableSquares": [
-//     { "x": 1, "y":  2},
-//     { "x": 3, "y":  2},
-//     { "x": 2, "y":  3},
-//     { "x": 2, "y":  1},
-//   ]
-// };
-
-export default function Field({playerPositions = {}}) {
+export default function Field({playerPositions = {}, movableSquares}) {
   const gridSize = 9; // 9×9 のマス目サイズ
   
   // playerPositionsを配列に変換
@@ -26,9 +17,6 @@ export default function Field({playerPositions = {}}) {
     x: position.x,
     y: position.y,
   }));
-  
-  // const movableSquares = movableData.movableSquares; 
-
 
   return (
     <div className="field-container">
@@ -50,7 +38,7 @@ export default function Field({playerPositions = {}}) {
           const occupantIcon = occupant ? playerIcons.find(icon => icon.id === occupant.id)?.icon : null;
           
           // JSONの中に (x, y) が存在すれば移動可能マス
-          // const isMovable = movableSquares.some(square => square.x === x && square.y === y);
+          const isMovable = movableSquares.some(square => square.x === x && square.y === y);
 
           return (
             <Square
@@ -63,7 +51,7 @@ export default function Field({playerPositions = {}}) {
               isYellow={isYellow}
               occupant={occupant} // 該当のプレイヤー情報をそのまま渡す
               icon={occupantIcon}
-              // isMovable={isMovable}
+              isMovable={isMovable}
             />
           );
         })

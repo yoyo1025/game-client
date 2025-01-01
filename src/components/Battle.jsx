@@ -20,6 +20,7 @@ export default function Battle() {
   const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
   const [message, setMessage] = useState(""); // メッセージ内容
   const [diceRoll, setDiceRoll] = useState(1);
+  const [movableSquares, setMovableSquares] = useState([]);
   const user = useContext(UserContext);
 
   const fetchDiceResult = async () => {
@@ -43,6 +44,7 @@ export default function Battle() {
   
       const data = await res.json();
       console.log("Dice roll result:", data.diceRoll);
+      
       setDiceRoll(data.diceRoll);
       
     } catch (error) {
@@ -128,8 +130,11 @@ export default function Battle() {
           console.log("Dice購読");
           const parseMessage = JSON.parse(message.body);
           const diceRoll = parseMessage.diceRoll;
+          const movableSquares = parseMessage.movableSquares;
           console.log(diceRoll);
+          console.log(movableSquares);
           setDiceRoll(diceRoll);
+          setMovableSquares(movableSquares);
         });
 
         // 切断通知を受け取る購読（オプション）
@@ -167,7 +172,7 @@ export default function Battle() {
         <Dice onDiceRoll={fetchDiceResult} diceRoll={diceRoll}/>
         <Event />
       </div>
-      <Field playerPositions={playerPositions}/>
+      <Field playerPositions={playerPositions} movableSquares={movableSquares}/>
       <PlayerStatus players={players} turn={turn} userId={user.userId}/>
     </div>
   );
