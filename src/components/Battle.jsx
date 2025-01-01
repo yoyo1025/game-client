@@ -21,17 +21,15 @@ export default function Battle() {
   const [message, setMessage] = useState(""); // メッセージ内容
   const user = useContext(UserContext);
 
-  const fetchGameState = async () => {
+  const fetchGameStateEarliest = async () => {
     try {
-      const res = await fetch('http://localhost:8080/api/start-game', {
-        method: 'GET',
-      });
+      const res = await fetch('http://localhost:8080/api/start-game', { method: 'GET' });
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       const data = await res.json();
-
-      setPlayers(data.players || []); // デフォルト値で空配列を設定
+  
+      setPlayers(data.players || []);
       setTurn({
         maxTurn: data.turn.maxTurn || 0,
         currentTurn: data.turn.currentTurn || 0,
@@ -39,13 +37,39 @@ export default function Battle() {
         maxPlayerIndex: data.turn.maxPlayerIndex || 0,
         maxTurnReached: data.turn.maxTurnReached || false,
       });
-      setPlayerPositions(data.playerPositions || {}); // デフォルト値で空オブジェクトを設定
+      setPlayerPositions(data.playerPositions || {});
+  
     } catch (error) {
       console.error('Error fetching game data:', error);
     }
   };
 
+  const fetchGameStateLater = async () => {
+    try {
+      const res = await fetch('http://localhost:8080/api/game-state', { method: 'GET' });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json();
+      console.log("Game state fetched:", data);
+  
+      setPlayers(data.players || []);
+      setTurn({
+        maxTurn: data.turn.maxTurn || 0,
+        currentTurn: data.turn.currentTurn || 0,
+        currentPlayerIndex: data.turn.currentPlayerIndex || 0,
+        maxPlayerIndex: data.turn.maxPlayerIndex || 0,
+        maxTurnReached: data.turn.maxTurnReached || false,
+      });
+      setPlayerPositions(data.playerPositions || {});
+    } catch (error) {
+      console.error('Error fetching game state:', error);
+    }
+  };  
+
   useEffect(() => {
+    fetchGameStateEarliest();
+    
     let stompClient = null;
     if (!stompClient) {
       // 初回接続先
@@ -53,10 +77,21 @@ export default function Battle() {
       stompClient.connect({ userId: "myUserId" }, () => {
         console.log("Connected to WebSocket");
 
-        // /topic/greetingsからのメッセージを購読
-        stompClient.subscribe("/topic/greeting", (msg) => {
-          const receivedMessage = JSON.parse(msg.body);
-          setMessage((prev) => [...prev, receivedMessage.content]);
+        // WebSocket購読部分
+        stompClient.subscribe('/topic/game-state', (message) => {
+          const gameState = JSON.parse(message.body);
+          console.log("Game state received:", gameState);
+
+          // 受け取ったgameStateからReactのStateを更新
+          setPlayers(gameState.players || []);
+          setTurn({
+            maxTurn: gameState.turn.maxTurn || 0,
+            currentTurn: gameState.turn.currentTurn || 0,
+            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+            maxTurnReached: gameState.turn.maxTurnReached || false,
+          });
+          setPlayerPositions(gameState.playerPositions || {});
         });
 
         // 切断通知を受け取る購読（オプション）
@@ -66,13 +101,13 @@ export default function Battle() {
       });
     }
 
-    fetchGameState();
-
     // return () => {
     //   if (stompClient) {
     //     stompClient.disconnect();
     //   }
     // };
+
+    fetchGameStateLater();
   }, []);
 
   // 状態の変更を監視してコンソールに出力
