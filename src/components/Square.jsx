@@ -1,6 +1,7 @@
 import "../Game.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import EventModal from "./EventModal"; // 先ほど作成したモーダルコンポーネントをインポート
+import { UserContext } from "./Home";
 
 export default function Square({ 
   x, 
@@ -16,10 +17,52 @@ export default function Square({
   isAlive,
   isDemon,
   onClickMove,
-  currentPlayerIndex 
+  currentPlayerIndex,
+  setPlayers,
+  setTurn,
+  setPlayerPositions
 }) {
   // モーダル表示を管理するためのステート
   const [showModal, setShowModal] = useState(false);
+  
+  const user = useContext(UserContext);
+
+  const fetchPoint = async () => {
+    try {
+      const res = await fetch('http://localhost:8080/api/get-point', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "userId": user.userId,
+        })
+      });
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Error from server:", errorData.error);
+        alert(errorData.error)
+        return;
+      }
+
+      const data = await res.json();
+      console.log("point added");
+
+      setPlayers(data.players || []);
+      setTurn({
+        maxTurn: data.turn.maxTurn || 0,
+        currentTurn: data.turn.currentTurn || 0,
+        currentPlayerIndex: data.turn.currentPlayerIndex || 0,
+        maxPlayerIndex: data.turn.maxPlayerIndex || 0,
+        maxTurnReached: data.turn.maxTurnReached || false,
+      });
+      setPlayerPositions(data.playerPositions || {});
+
+
+    } catch (error) {
+      console.error('Error fetching point:', error);
+    }
+  };
 
   // イベントマスかつ移動可能な場合に呼ばれる関数
   const handleEventSquare = () => {
@@ -28,6 +71,7 @@ export default function Square({
 
   // モーダル内で「ポイント取得」を選んだときの処理
   const handleSelectPoint = () => {
+    fetchPoint();
     console.log("ポイント取得が選択されました");
     setShowModal(false);
     onClickMove(x, y);
