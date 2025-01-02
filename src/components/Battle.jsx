@@ -18,7 +18,6 @@ export default function Battle() {
     maxTurnReached: false
   }); // ターン情報
   const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
-  const [message, setMessage] = useState(""); // メッセージ内容
   const [diceRoll, setDiceRoll] = useState(1);
   const [movableSquares, setMovableSquares] = useState([]);
   const [movable, setMovable] = useState(false);
@@ -155,6 +154,22 @@ export default function Battle() {
           setPlayerPositions(gameState.playerPositions || {});
           
           setMovableSquares([]);
+        });
+
+        stompClient.subscribe('/topic/get-point', (message) => {
+          const gameState = JSON.parse(message.body);
+          console.log("Game state received:", gameState);
+
+          // 受け取ったgameStateからReactのStateを更新
+          setPlayers(gameState.players || []);
+          setTurn({
+            maxTurn: gameState.turn.maxTurn || 0,
+            currentTurn: gameState.turn.currentTurn || 0,
+            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+            maxTurnReached: gameState.turn.maxTurnReached || false,
+          });
+          setPlayerPositions(gameState.playerPositions || {});
         });
 
         // 切断通知を受け取る購読（オプション）
