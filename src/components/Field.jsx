@@ -16,13 +16,21 @@ export default function Field({
   playersStatus
 }) {
   const gridSize = 9; // 9×9 のマス目サイズ
-  
-  // playerPositionsを配列に変換
-  const players = Object.entries(playerPositions).map(([id, position]) => ({
-    id: parseInt(id, 10),
-    x: position.x,
-    y: position.y,
-  }));
+
+  // 取得した playerPositions を配列化する際に、村人の isAlive が false の場合は除外する
+  const players = Object.entries(playerPositions).map(([id, position]) => {
+    const numericId = parseInt(id, 10);
+    return {
+      id: numericId,
+      x: position.x,
+      y: position.y,
+      isAlive: playersStatus[numericId - 1]?.isAlive, 
+    };
+  }).filter(player => {
+    const aliveFlag = playersStatus[player.id - 1]?.isAlive;
+    return aliveFlag !== false; // false のときは表示しない
+  });
+
 
   const handleMove = async (x, y) => {
     console.log(`Moving to (${x}, ${y})`);

@@ -164,12 +164,6 @@ export default function Battle() {
       });
     }
 
-    // return () => {
-    //   if (stompClient) {
-    //     stompClient.disconnect();
-    //   }
-    // };
-
     fetchGameStateLater();
   }, []);
 
@@ -204,6 +198,8 @@ export default function Battle() {
         currentPlayerIndex={turn.currentPlayerIndex}
         setPlayerPositions={setPlayerPositions}
         setMovableSquares={setMovableSquares}
+        setPlayers={setPlayers}
+        setTurn={setTurn}
         playersStatus={players}
       />
       <PlayerStatus 
