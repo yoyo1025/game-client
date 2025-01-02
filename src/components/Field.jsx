@@ -11,12 +11,9 @@ const playerIcons = [
 export default function Field({
   playerPositions = {}, 
   movableSquares, 
-  movable, 
-  setMovable,
   userId, 
   currentPlayerIndex,
-  setPlayerPositions,
-  setMovableSquares
+  playersStatus
 }) {
   const gridSize = 9; // 9×9 のマス目サイズ
   
@@ -74,6 +71,9 @@ export default function Field({
           // JSONの中に (x, y) が存在すれば移動可能マス
           const isMovable = movableSquares.length > 0 && movableSquares.some(square => square.x === x && square.y === y);
 
+          const isAlive = occupant ? playersStatus[occupant.id - 1]?.isAlive : false;
+          const isDemon = occupant ? playersStatus[occupant.id - 1]?.id === 4 : false;
+
           return (
             <Square
               key={`${x},${y}`}
@@ -83,9 +83,11 @@ export default function Field({
               isBlue={isBlue}
               isRed={isRed}
               isYellow={isYellow}
-              occupant={occupant} // 該当のプレイヤー情報をそのまま渡す
+              occupant={occupant}
               icon={occupantIcon}
               isMovable={isMovable}
+              isAlive={isAlive}
+              isDemon={isDemon}
               onClickMove={handleMove}
             />
           );

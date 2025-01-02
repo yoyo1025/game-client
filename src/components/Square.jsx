@@ -10,6 +10,8 @@ export default function Square({
   isGreen, 
   isBlue, 
   isMovable,
+  isAlive,
+  isDemon,
   onClickMove 
 }) {
   const handleClick = () => {
@@ -37,7 +39,7 @@ export default function Square({
       title={`(${x}, ${y})`}
       onClick={handleClick}
     >
-      {occupant && <img src={icon} alt={icon} />}
+      {occupant && (isAlive || isDemon ) && <img src={icon} alt={icon} />}
     </button>
   );
 }

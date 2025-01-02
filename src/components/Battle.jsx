@@ -204,6 +204,7 @@ export default function Battle() {
         currentPlayerIndex={turn.currentPlayerIndex}
         setPlayerPositions={setPlayerPositions}
         setMovableSquares={setMovableSquares}
+        playersStatus={players}
       />
       <PlayerStatus 
         players={players} 
