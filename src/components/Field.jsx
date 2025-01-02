@@ -100,6 +100,7 @@ export default function Field({
               isAlive={isAlive}
               isDemon={isDemon}
               onClickMove={handleMove}
+              currentPlayerIndex={currentPlayerIndex}
             />
           );
         })
