@@ -1,8 +1,15 @@
 // EventModal.jsx
-import React from "react";
+import React, { useContext } from "react";
 import "../Game.css";
+import { UserContext } from "./Home";
 
-export default function EventModal({ onClose, onSelectPoint, onSelectEvent, currentPlayerIndex}) {
+export default function EventModal({ 
+  onClose, 
+  onSelectPoint, 
+  onSelectEvent, 
+  currentPlayerIndex
+}) {
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">

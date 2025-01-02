@@ -13,7 +13,10 @@ export default function Field({
   movableSquares, 
   userId, 
   currentPlayerIndex,
-  playersStatus
+  playersStatus,
+  setPlayers,
+  setTurn,
+  setPlayerPositions
 }) {
   const gridSize = 9; // 9×9 のマス目サイズ
 
@@ -101,6 +104,9 @@ export default function Field({
               isDemon={isDemon}
               onClickMove={handleMove}
               currentPlayerIndex={currentPlayerIndex}
+              setPlayers={setPlayers}
+              setTurn={setTurn}
+              setPlayerPositions={setPlayerPositions}
             />
           );
         })
