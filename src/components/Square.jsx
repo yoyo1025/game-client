@@ -9,12 +9,16 @@ export default function Square({
   isYellow, 
   isGreen, 
   isBlue, 
+  isEventSquare,
   isMovable,
   isAlive,
   isDemon,
   onClickMove 
 }) {
   const handleClick = () => {
+    if(isEventSquare && isMovable) {
+      alert("ポイント取得とイベント実行どちらにしますか？");
+    }
     console.log(`Clicked square at (${x}, ${y})`);
     if (occupant) {
       console.log(`Occupied by: ${occupant.id}`);

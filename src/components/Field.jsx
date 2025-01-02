@@ -70,6 +70,8 @@ export default function Field({
           const isRed = x === 1 && y === 7; // (1, 7) イベントマス赤
           const isYellow = x === 7 && y === 7; // (7, 7) イベントマス黄
 
+          const isEventSquare = isGreen || isBlue || isRed || isYellow;
+
           // (x, y) にいるプレイヤーを検索
           const occupant = players.find(player => player.x === x && player.y === y);
 
@@ -91,6 +93,7 @@ export default function Field({
               isBlue={isBlue}
               isRed={isRed}
               isYellow={isYellow}
+              isEventSquare={isEventSquare}
               occupant={occupant}
               icon={occupantIcon}
               isMovable={isMovable}
