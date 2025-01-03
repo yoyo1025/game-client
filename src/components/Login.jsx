@@ -47,7 +47,8 @@ return(
             style={styles.input}
             />
         </div>
+        <button type="submit">ログイン</button>
     </form>
-
+    <button onClick={habdleRegisterRedirect} style={styles.registerButton}>新規会員登録</button>
    </div> 
 )
