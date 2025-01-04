@@ -184,32 +184,40 @@
 }
 
 .player-status-container {
-  display: grid;
-  grid-template-rows: repeat(4, auto);
-  gap: 30px;
+  display: flex; /* Flexboxを適用 */
+  flex-direction: column; /* 子要素を縦方向に並べる */
+  justify-content: space-evenly; /* 子要素を均等に配置 */
+  align-items: stretch; /* 子要素の幅を親要素に合わせる */
+  gap: 10px; /* 子要素間のスペース */
   border: 2px solid black;
   padding: 8px;
-  height: 83vh; /* ビューポート全体の高さ */
-  width: 18vw; /* ビューポート全体の幅 */
+  height: 83vh; /* ビューポートの高さに合わせる */
+  width: 18vw; /* ビューポートの幅に合わせる */
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.6); /* 半透明の白色 */
-  backdrop-filter: blur(10px); /* ガラス効果を適用 */
+  backdrop-filter: blur(10px); /* ガラス効果 */
   border: 2px solid rgba(255, 255, 255, 1.0); /* 半透明の境界線 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+  box-sizing: border-box; /* パディングを含めたサイズ計算 */
 }
 
 .player-status {
-  font-family: 'Zen Maru Gothic', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  grid-template-columns: 2fr 1fr;
+  justify-content: center; /* プレイヤー情報を中央寄せ */
   align-items: center;
-  border: 1px solid black;
-  padding: 8px;
+  padding: 10px;
   background-color: #f9f9f9;
   border-radius: 15px;
+  border: 1px solid black;
+  width: 100%; /* 親要素に合わせた幅 */
+  height: calc(100% / 4 - 10px); /* 4人分を均等に配置する高さ */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* パディングを含めたサイズ計算 */
 }
+
+
+
 
 .status-icon {
   height: 50px;
