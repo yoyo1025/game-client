@@ -16,7 +16,8 @@ export default function Field({
   playersStatus,
   setPlayers,
   setTurn,
-  setPlayerPositions
+  setPlayerPositions,
+  setPrepareEvent
 }) {
   const gridSize = 9; // 9×9 のマス目サイズ
 
@@ -107,6 +108,7 @@ export default function Field({
               setPlayers={setPlayers}
               setTurn={setTurn}
               setPlayerPositions={setPlayerPositions}
+              setPrepareEvent={setPrepareEvent}
             />
           );
         })
