@@ -2,53 +2,52 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const LoginForm = () =>{
+const Login = () =>{
     const[userId, setUserId] = useState('');
     const[password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = (e) =>{
         e.preventDefault();
 
         //ログイン処理をここに追加
-    }
+    };
 
-    const habdleRegisterRedirect = () =>{
-        //新規会員登録画面へ遷移
-    }
+    const handleRegisterRedirect = () =>{
+        navigate('/register')//新規会員登録画面へ遷移
+    };
 
-    
-}
 
 return(
-   <div style={styles.container}>
-    //ゲームタイトルロゴ
-    <img src="" alt="Game Title" style={styles.gameTitleImage}/>
-
-    <form onSubmit={handleLogin} style={styles.form}>
-        <label htmlFor="userId">ユーザーID</label>
-        <div style={styles.inputContainer}>
+    <div className="login-container">
+        /* タイトルロゴ*/
+    <img src="/game-title-image.png" alt="Game Title" className="character" />
+    
+    <form onSubmit={handleLogin}>
+        <div className="form-group">
         <input
-        id="userId"
         type="text"
+        placeholder="ユーザーID"
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
         required
-        style={style.input}
         />
         </div>
-        <div style={styles.inputContainer}>
-            <label htmlFor="password">パスワード</label>
+        <div className="form-group">
             <input
-            id="password"
             type="password"
+            placeholder="パスワード"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={styles.input}
             />
         </div>
         <button type="submit">ログイン</button>
     </form>
-    <button onClick={habdleRegisterRedirect} style={styles.registerButton}>新規会員登録</button>
+
+    <button onClick={handleRegisterRedirect} className="register-button">新規会員登録</button>
    </div> 
 )
+}
+
+export default Login;
