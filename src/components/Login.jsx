@@ -20,7 +20,6 @@ const Login = () =>{
 
 return(
     <div className="login-container">
-        /* タイトルロゴ*/
     <img src="/game-title-image.png" alt="Game Title" className="character" />
     
     <form onSubmit={handleLogin}>
