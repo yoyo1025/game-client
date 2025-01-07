@@ -127,7 +127,7 @@
 }
 
 /*ログイン画面*/
-body{
+body.login-page{
   background-color: #ffefd5;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   color: #ff6b6b;
@@ -139,27 +139,28 @@ body{
 }
 
 .login-container{
-  display: flex;
+  padding: 40px;
+  align-items: center;/*中央揃え*/
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 20px;
+  width: 70%;
+  max-width: 800px;
+  height: auto;
   text-align: center;
-  position: relative;
-  background-color: #fff;
+  margin: 0 auto;
+  background-color: #fff;/*背景色*/
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 /*タイトルロゴ*/
 .character{
-  width: 150px;
+  width: 400px;
   margin-bottom: 20px;
 }
 
 /*入力フィールドのグループ*/
 .form-group{
   margin-bottom: 15px;
+  width: 100%;
 }
 
 /*入力フィールド*/
@@ -197,9 +198,8 @@ button:hover{
 
 /*新規会員登録ボタン*/
 .register-button{
-  position:absolute;
-  bottom: 20px;
-  right: 20px;
+  width: 100%;
+  margin-top: 15px;
   padding: 10px 20px;
   background-color: #ff69b4;
   border:none;
@@ -212,4 +212,14 @@ button:hover{
 
 .register-button:hover{
   background-color: #ff1493;
+}
+
+@media(max-width:768px){
+  .login-container{
+    width: 90%;
+  }
+
+  .character{
+    width: 150px;
+  }
 }
