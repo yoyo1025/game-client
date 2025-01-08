@@ -13,6 +13,14 @@ export default function Home() {
     navigate('/room-join')
   }
 
+  const handleResult = () =>{
+    navigate('/battleresult')
+  }
+
+  const handleLogout = () => {
+    navigate('/logout')
+  }
+
   const toggleRulePopup = () => {
     setIsRulePopupVisible(!isRulePopupVisible);
   }
@@ -48,7 +56,7 @@ export default function Home() {
       )}
 
       {/*戦績確認*/}
-        <div className="menu-item">
+        <div className="menu-item" onClick={handleResult}>
           <button className="menu-botton">
             <img src="battle-record-icon.png" className="menu-icon" alt="Battle Record Icon" />
           </button>
@@ -57,7 +65,7 @@ export default function Home() {
 
         {/*ログアウト*/}
         <div className="menu-item">
-          <button className="menu-botton">
+          <button className="menu-botton" onClick={handleLogout}>
             <img src="logout-icon.png" className="menu-icon" alt="Logout Icon" />
           </button>
           <div className="menu-description">ログアウト</div>
