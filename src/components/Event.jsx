@@ -1,5 +1,6 @@
 import '../Game.css';
 import ExchangeEventModal from './ExchangePosition';
+import SkipTurnModal from './SkipTurn';
 
 export default function Event({
   prepareEvent,
@@ -22,6 +23,14 @@ export default function Event({
         <button className={`event-button ${prepareEvent ? 'blinking': ''}`} onClick={() => setEvent2(event2 => !event2)}>一回休み</button>
         <button className={`event-button ${prepareEvent ? 'blinking': ''}`} onClick={() => setEvent3(event3 => !event3)}>ワープ</button>
       </div>
+      {
+        event2
+          && <SkipTurnModal
+              setEvent={setEvent2}
+              setPrepareEvent={setPrepareEvent}
+              players={players}
+             />
+      }
       {
         event3
           && <ExchangeEventModal
