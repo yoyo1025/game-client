@@ -148,6 +148,8 @@
   padding: 20px;
   border-radius: 10px;
   max-width: 500px;
+  max-height: 60vh;
+  overflow-y: auto;
   text-align: center;
   transform: translateY(40px) scale(0.8);
   opacity: 0;

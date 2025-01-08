@@ -13,7 +13,7 @@ export default function Home() {
     navigate('/room-join')
   }
 
-  const handleResult = () =>{
+  const handleResult = () => {
     navigate('/battleresult')
   }
 
