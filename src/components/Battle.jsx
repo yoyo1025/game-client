@@ -176,7 +176,7 @@ export default function Battle() {
           setPlayerPositions(gameState.playerPositions || {});
         });
 
-        stompClient.subscribe('/topic/changePosition', (message) => {
+        stompClient.subscribe('/topic/change-position', (message) => {
           const gameState = JSON.parse(message.body);
           console.log("Game state received:", gameState);
 
