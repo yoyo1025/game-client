@@ -1,11 +1,23 @@
+import { createContext, useContext } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
+
+// 1001～1004の間で乱数を生成し、Contextに格納
+const randomId = Math.floor(Math.random() * 4) + 1001;
+export const user = {
+  userId: randomId,
+  userName: `ランダムユーザー${randomId}`,
+};
+
+export const UserContext = createContext(user);
 
 export default function Home() {
 
   const navigate = useNavigate();
   const [isRulePopupVisible, setIsRulePopupVisible] = useState(false);
+  const user = useContext(UserContext);
   const handleRoomMake = () => {
     navigate('/room-make')
   }
@@ -95,8 +107,8 @@ export default function Home() {
 
       <div className="player-info">
         <div>
-          <p>ID: BP12345</p>
-          <p>Name: シバウラ太郎</p>
+          <p>ID: {user.userId}</p>
+          <p>Name: {user.userName}</p>
         </div>
       </div>
     </div>
