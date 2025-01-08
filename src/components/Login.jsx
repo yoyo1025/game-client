@@ -23,7 +23,7 @@ return(
       <div className="login-container">
         <img src="/game-title-image.png" alt="Game Title" className="character" />
         <form onSubmit={handleLogin}>
-             <div className="form-group">
+             <div className="loginform-group">
                 <input
                 type="text"
                  placeholder="ユーザーID"
@@ -32,7 +32,7 @@ return(
                  required
                   />
                   </div>
-            <div className="form-group">
+            <div className="loginform-group">
                 <input
                  type="password"
                  placeholder="パスワード"
@@ -40,7 +40,7 @@ return(
                  onChange={(e) => setPassword(e.target.value)}
                  required/>
                  </div>
-        <button type="submit">ログイン</button>
+        <button type="submit" className="login-button">ログイン</button>
         </form>
     <h2>アカウントを持っていない方はこちら</h2>
     <button onClick={handleRegisterRedirect} className="register-button">新規会員登録</button>
