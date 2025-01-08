@@ -1,227 +1,227 @@
-import Field from "./Field";
-import Dice from "./Dice";
-import Event from "./Event";
-import PlayerStatus from "./PlayerStatus";
-import { useContext, useEffect, useState } from "react";
-import SockJS from 'sockjs-client';
-import { Stomp } from "@stomp/stompjs";
-import { UserContext } from "./Home";
+// import Field from "./Field";
+// import Dice from "./Dice";
+// import Event from "./Event";
+// import PlayerStatus from "./PlayerStatus";
+// import { useContext, useEffect, useState } from "react";
+// import SockJS from 'sockjs-client';
+// import { Stomp } from "@stomp/stompjs";
+// import { UserContext } from "./Home";
 
 
-export default function Battle() {
-  const [players, setPlayers] = useState([]); // プレイヤー情報
-  const [turn, setTurn] = useState({ 
-    maxTurn: 0, 
-    currentTurn: 0, 
-    currentPlayerIndex: 1, 
-    maxPlayerIndex: 4, 
-    maxTurnReached: false
-  }); // ターン情報
-  const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
-  const [diceRoll, setDiceRoll] = useState(1);
-  const [movableSquares, setMovableSquares] = useState([]);
-  const [movable, setMovable] = useState(false);
-  const user = useContext(UserContext);
+// export default function Battle() {
+//   const [players, setPlayers] = useState([]); // プレイヤー情報
+//   const [turn, setTurn] = useState({ 
+//     maxTurn: 0, 
+//     currentTurn: 0, 
+//     currentPlayerIndex: 1, 
+//     maxPlayerIndex: 4, 
+//     maxTurnReached: false
+//   }); // ターン情報
+//   const [playerPositions, setPlayerPositions] = useState({}); // プレイヤー位置情報
+//   const [diceRoll, setDiceRoll] = useState(1);
+//   const [movableSquares, setMovableSquares] = useState([]);
+//   const [movable, setMovable] = useState(false);
+//   const user = useContext(UserContext);
 
-  const fetchDiceResult = async () => {
-    try {
-      const res = await fetch('http://localhost:8080/api/dice',{ 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          "userId": user.userId,
-          "currentPlayerIndex": turn.currentPlayerIndex,
-        })
-      });
-      if (!res.ok) {
-        const errorData = await res.json();
-        console.error("Error from server:", errorData.error);
-        alert(errorData.error)
-        return;
-      }
+//   const fetchDiceResult = async () => {
+//     try {
+//       const res = await fetch('http://localhost:8080/api/dice',{ 
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//           "userId": user.userId,
+//           "currentPlayerIndex": turn.currentPlayerIndex,
+//         })
+//       });
+//       if (!res.ok) {
+//         const errorData = await res.json();
+//         console.error("Error from server:", errorData.error);
+//         alert(errorData.error)
+//         return;
+//       }
   
-      const data = await res.json();
-      console.log("Dice roll result:", data.diceRoll);
+//       const data = await res.json();
+//       console.log("Dice roll result:", data.diceRoll);
       
-      setDiceRoll(data.diceRoll);
+//       setDiceRoll(data.diceRoll);
       
-    } catch (error) {
-      console.error('Error fetching game data:', error);  
-    }
-  };
+//     } catch (error) {
+//       console.error('Error fetching game data:', error);  
+//     }
+//   };
 
-  const fetchGameStateEarliest = async () => {
-    try {
-      const res = await fetch('http://localhost:8080/api/start-game', { method: 'GET' });
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      const data = await res.json();
+//   const fetchGameStateEarliest = async () => {
+//     try {
+//       const res = await fetch('http://localhost:8080/api/start-game', { method: 'GET' });
+//       if (!res.ok) {
+//         throw new Error(`HTTP error! status: ${res.status}`);
+//       }
+//       const data = await res.json();
   
-      setPlayers(data.players || []);
-      setTurn({
-        maxTurn: data.turn.maxTurn || 0,
-        currentTurn: data.turn.currentTurn || 0,
-        currentPlayerIndex: data.turn.currentPlayerIndex || 0,
-        maxPlayerIndex: data.turn.maxPlayerIndex || 0,
-        maxTurnReached: data.turn.maxTurnReached || false,
-      });
-      setPlayerPositions(data.playerPositions || {});
+//       setPlayers(data.players || []);
+//       setTurn({
+//         maxTurn: data.turn.maxTurn || 0,
+//         currentTurn: data.turn.currentTurn || 0,
+//         currentPlayerIndex: data.turn.currentPlayerIndex || 0,
+//         maxPlayerIndex: data.turn.maxPlayerIndex || 0,
+//         maxTurnReached: data.turn.maxTurnReached || false,
+//       });
+//       setPlayerPositions(data.playerPositions || {});
   
-    } catch (error) {
-      console.error('Error fetching game data:', error);
-    }
-  };
+//     } catch (error) {
+//       console.error('Error fetching game data:', error);
+//     }
+//   };
 
-  const fetchGameStateLater = async () => {
-    try {
-      const res = await fetch('http://localhost:8080/api/game-state', { method: 'GET' });
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      const data = await res.json();
-      console.log("Game state fetched:", data);
+//   const fetchGameStateLater = async () => {
+//     try {
+//       const res = await fetch('http://localhost:8080/api/game-state', { method: 'GET' });
+//       if (!res.ok) {
+//         throw new Error(`HTTP error! status: ${res.status}`);
+//       }
+//       const data = await res.json();
+//       console.log("Game state fetched:", data);
   
-      setPlayers(data.players || []);
-      setTurn({
-        maxTurn: data.turn.maxTurn || 0,
-        currentTurn: data.turn.currentTurn || 0,
-        currentPlayerIndex: data.turn.currentPlayerIndex || 0,
-        maxPlayerIndex: data.turn.maxPlayerIndex || 0,
-        maxTurnReached: data.turn.maxTurnReached || false,
-      });
-      setPlayerPositions(data.playerPositions || {});
-    } catch (error) {
-      console.error('Error fetching game state:', error);
-    }
-  };  
+//       setPlayers(data.players || []);
+//       setTurn({
+//         maxTurn: data.turn.maxTurn || 0,
+//         currentTurn: data.turn.currentTurn || 0,
+//         currentPlayerIndex: data.turn.currentPlayerIndex || 0,
+//         maxPlayerIndex: data.turn.maxPlayerIndex || 0,
+//         maxTurnReached: data.turn.maxTurnReached || false,
+//       });
+//       setPlayerPositions(data.playerPositions || {});
+//     } catch (error) {
+//       console.error('Error fetching game state:', error);
+//     }
+//   };  
 
-  useEffect(() => {
-    fetchGameStateEarliest();
+//   useEffect(() => {
+//     fetchGameStateEarliest();
     
-    let stompClient = null;
-    if (!stompClient) {
-      // 初回接続先
-      stompClient = Stomp.over(() => new SockJS("http://localhost:8080/app-websocket"));
-      stompClient.connect({ userId: "myUserId" }, () => {
-        console.log("Connected to WebSocket");
+//     let stompClient = null;
+//     if (!stompClient) {
+//       // 初回接続先
+//       stompClient = Stomp.over(() => new SockJS("http://localhost:8080/app-websocket"));
+//       stompClient.connect({ userId: "myUserId" }, () => {
+//         console.log("Connected to WebSocket");
 
-        // WebSocket購読部分
-        stompClient.subscribe('/topic/game-state', (message) => {
-          const gameState = JSON.parse(message.body);
-          console.log("Game state received:", gameState);
+//         // WebSocket購読部分
+//         stompClient.subscribe('/topic/game-state', (message) => {
+//           const gameState = JSON.parse(message.body);
+//           console.log("Game state received:", gameState);
 
-          // 受け取ったgameStateからReactのStateを更新
-          setPlayers(gameState.players || []);
-          setTurn({
-            maxTurn: gameState.turn.maxTurn || 0,
-            currentTurn: gameState.turn.currentTurn || 0,
-            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
-            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
-            maxTurnReached: gameState.turn.maxTurnReached || false,
-          });
-          setPlayerPositions(gameState.playerPositions || {});
-        });
+//           // 受け取ったgameStateからReactのStateを更新
+//           setPlayers(gameState.players || []);
+//           setTurn({
+//             maxTurn: gameState.turn.maxTurn || 0,
+//             currentTurn: gameState.turn.currentTurn || 0,
+//             currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+//             maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+//             maxTurnReached: gameState.turn.maxTurnReached || false,
+//           });
+//           setPlayerPositions(gameState.playerPositions || {});
+//         });
 
-        // WebSocket購読部分
-        stompClient.subscribe('/topic/dice', (message) => {
-          console.log("Dice購読");
-          const parseMessage = JSON.parse(message.body);
-          const diceRoll = parseMessage.diceRoll;
-          const movableSquares = parseMessage.movableSquares;
-          console.log(diceRoll);
-          console.log(movableSquares);
-          setDiceRoll(diceRoll);
-          setMovableSquares(movableSquares);
-          setMovable(movable => !movable);
-        });
+//         // WebSocket購読部分
+//         stompClient.subscribe('/topic/dice', (message) => {
+//           console.log("Dice購読");
+//           const parseMessage = JSON.parse(message.body);
+//           const diceRoll = parseMessage.diceRoll;
+//           const movableSquares = parseMessage.movableSquares;
+//           console.log(diceRoll);
+//           console.log(movableSquares);
+//           setDiceRoll(diceRoll);
+//           setMovableSquares(movableSquares);
+//           setMovable(movable => !movable);
+//         });
 
-        stompClient.subscribe('/topic/newPosition', (message) => {
-          const gameState = JSON.parse(message.body);
-          console.log("Game state received:", gameState);
+//         stompClient.subscribe('/topic/newPosition', (message) => {
+//           const gameState = JSON.parse(message.body);
+//           console.log("Game state received:", gameState);
 
-          // 受け取ったgameStateからReactのStateを更新
-          setPlayers(gameState.players || []);
-          setTurn({
-            maxTurn: gameState.turn.maxTurn || 0,
-            currentTurn: gameState.turn.currentTurn || 0,
-            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
-            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
-            maxTurnReached: gameState.turn.maxTurnReached || false,
-          });
-          setPlayerPositions(gameState.playerPositions || {});
+//           // 受け取ったgameStateからReactのStateを更新
+//           setPlayers(gameState.players || []);
+//           setTurn({
+//             maxTurn: gameState.turn.maxTurn || 0,
+//             currentTurn: gameState.turn.currentTurn || 0,
+//             currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+//             maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+//             maxTurnReached: gameState.turn.maxTurnReached || false,
+//           });
+//           setPlayerPositions(gameState.playerPositions || {});
           
-          setMovableSquares([]);
-        });
+//           setMovableSquares([]);
+//         });
 
-        stompClient.subscribe('/topic/get-point', (message) => {
-          const gameState = JSON.parse(message.body);
-          console.log("Game state received:", gameState);
+//         stompClient.subscribe('/topic/get-point', (message) => {
+//           const gameState = JSON.parse(message.body);
+//           console.log("Game state received:", gameState);
 
-          // 受け取ったgameStateからReactのStateを更新
-          setPlayers(gameState.players || []);
-          setTurn({
-            maxTurn: gameState.turn.maxTurn || 0,
-            currentTurn: gameState.turn.currentTurn || 0,
-            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
-            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
-            maxTurnReached: gameState.turn.maxTurnReached || false,
-          });
-          setPlayerPositions(gameState.playerPositions || {});
-        });
+//           // 受け取ったgameStateからReactのStateを更新
+//           setPlayers(gameState.players || []);
+//           setTurn({
+//             maxTurn: gameState.turn.maxTurn || 0,
+//             currentTurn: gameState.turn.currentTurn || 0,
+//             currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+//             maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+//             maxTurnReached: gameState.turn.maxTurnReached || false,
+//           });
+//           setPlayerPositions(gameState.playerPositions || {});
+//         });
 
-        // 切断通知を受け取る購読（オプション）
-        stompClient.subscribe("/topic/user-disconnected", (msg) => {
-          console.log("User disconnected message:", msg.body);
-        });
-      });
-    }
+//         // 切断通知を受け取る購読（オプション）
+//         stompClient.subscribe("/topic/user-disconnected", (msg) => {
+//           console.log("User disconnected message:", msg.body);
+//         });
+//       });
+//     }
 
-    fetchGameStateLater();
-  }, []);
+//     fetchGameStateLater();
+//   }, []);
 
-  // 状態の変更を監視してコンソールに出力
-  useEffect(() => {
-    console.log("Players:", players);
-  }, [players]);
+//   // 状態の変更を監視してコンソールに出力
+//   useEffect(() => {
+//     console.log("Players:", players);
+//   }, [players]);
 
-  useEffect(() => {
-    console.log("Turn:", turn);
-  }, [turn]);
+//   useEffect(() => {
+//     console.log("Turn:", turn);
+//   }, [turn]);
 
-  useEffect(() => {
-    console.log("Player Positions:", playerPositions);
-  }, [playerPositions]);
+//   useEffect(() => {
+//     console.log("Player Positions:", playerPositions);
+//   }, [playerPositions]);
 
-  return(
-    <div className="battle-screen">
-      <div className="dice-event">
-        <Dice 
-          onDiceRoll={fetchDiceResult} 
-          diceRoll={diceRoll}
-        />
-        <Event />
-      </div>
-      <Field 
-        playerPositions={playerPositions} 
-        movableSquares={movableSquares} 
-        movable={movable} 
-        setMovable={setMovable}
-        userId={user.userId} 
-        currentPlayerIndex={turn.currentPlayerIndex}
-        setPlayerPositions={setPlayerPositions}
-        setMovableSquares={setMovableSquares}
-        setPlayers={setPlayers}
-        setTurn={setTurn}
-        playersStatus={players}
-      />
-      <PlayerStatus 
-        players={players} 
-        turn={turn} 
-        userId={user.userId}
-      />
-    </div>
-  );
-}
+//   return(
+//     <div className="battle-screen">
+//       <div className="dice-event">
+//         <Dice 
+//           onDiceRoll={fetchDiceResult} 
+//           diceRoll={diceRoll}
+//         />
+//         <Event />
+//       </div>
+//       <Field 
+//         playerPositions={playerPositions} 
+//         movableSquares={movableSquares} 
+//         movable={movable} 
+//         setMovable={setMovable}
+//         userId={user.userId} 
+//         currentPlayerIndex={turn.currentPlayerIndex}
+//         setPlayerPositions={setPlayerPositions}
+//         setMovableSquares={setMovableSquares}
+//         setPlayers={setPlayers}
+//         setTurn={setTurn}
+//         playersStatus={players}
+//       />
+//       <PlayerStatus 
+//         players={players} 
+//         turn={turn} 
+//         userId={user.userId}
+//       />
+//     </div>
+//   );
+// }
