@@ -12,6 +12,31 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // 登録ボタンが押されたときの処理をここに書きます。
+    const submitData = (event) => {
+      event.preventDefault(); // デフォルトのフォーム送信を防ぐ
+     
+      const url = "http://localhost:8080/login"; // サーバーのエンドポイントURL
+   
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: playerName, password: password }),
+      };
+   
+      console.log(playerName);
+   
+      // サーバーにデータを送信
+      fetch(url, options)
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+          navigate("/login");
+   
+        })
+        .catch((error) => {
+          alert("登録に失敗しました。もう一度お試しください。");
+        });
+    };
     console.log("プレイヤー名:", playerName, "パスワード:", password);
   };
 
