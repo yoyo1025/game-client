@@ -1,0 +1,52 @@
+import "../App.css";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+const Login = () =>{
+    const[userId, setUserId] = useState('');
+    const[password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = (e) =>{
+        e.preventDefault();
+
+        //ログイン処理をここに追加
+    };
+
+    const handleRegisterRedirect = () =>{
+        navigate('/register')//新規会員登録画面へ遷移
+    };
+
+
+return(
+    <body className="login-page">
+      <div className="login-container">
+        <img src="/game-title-image.png" alt="Game Title" className="character" />
+        <form onSubmit={handleLogin}>
+             <div className="loginform-group">
+                <input
+                type="text"
+                 placeholder="ユーザーID"
+                 value={userId}
+                 onChange={(e) => setUserId(e.target.value)}
+                 required
+                  />
+                  </div>
+            <div className="loginform-group">
+                <input
+                 type="password"
+                 placeholder="パスワード"
+                 value={password}
+                 onChange={(e) => setPassword(e.target.value)}
+                 required/>
+                 </div>
+        <button type="submit" className="login-button">ログイン</button>
+        </form>
+    <h2>アカウントを持っていない方はこちら</h2>
+    <button onClick={handleRegisterRedirect} className="register-button">新規会員登録</button>
+    </div> 
+   </body>
+)
+}
+
+export default Login;
