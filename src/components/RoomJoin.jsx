@@ -10,7 +10,7 @@ export default function RoomJoin() {
     e.preventDefault();
     if (roomNumber.trim() !== "") {
       console.log("部屋番号:", roomNumber);
-      navigate(`/room/${roomNumber}`); // 部屋番号をパスに渡して次の画面へ遷移
+      navigate(`/room/${roomNumber}`);
     } else {
       alert("部屋番号を入力してください！");
     }
@@ -20,22 +20,20 @@ export default function RoomJoin() {
     <div className="make-or-join-room">
       <div className="join-room-gourp">
         <h2>ルーム参加</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="roomNumber">部屋番号</label>
-            <input
-              type="text"
-              id="roomNumber"
-              value={roomNumber}
-              onChange={(e) => setRoomNumber(e.target.value)}
-              placeholder="部屋番号を入力"
-            />
-          </div>
+        <form onSubmit={handleSubmit} className="form-inline">
+          <label htmlFor="roomNumber"></label>
+          <input
+            type="text"
+            id="roomNumber"
+            value={roomNumber}
+            onChange={(e) => setRoomNumber(e.target.value)}
+            placeholder="部屋番号を入力"
+          />
           <button className="join-room-button">参加</button>
         </form>
         <button
           className="back-button"
-          onClick={() => console.log("トップ画面に戻る")}
+          onClick={() => navigate("/")}
         >
           トップ画面に戻る
         </button>
