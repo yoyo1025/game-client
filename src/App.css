@@ -63,6 +63,7 @@
   align-items: center;
   font-weight: bold;
   font-size: x-large;
+  gap: 10px;
   margin-top: 10%;
   margin-left: 120px;
 }
