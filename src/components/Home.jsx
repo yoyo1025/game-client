@@ -33,8 +33,15 @@ export default function Home() {
         <div className="popup-overlay" onClick={toggleRulePopup}>
           <div className={`anim-box popup ${isRulePopupVisible ? "is-animated" : ""}`}
           onClick={(e)=>e.stopPropagation()}>
-            <h2>ルール</h2>
-            <p>ゲームルール詳細</p>
+            <h2>ゲームの遊び方</h2>
+            <p>さいころを振ってマス目を移動する鬼ごっこゲーム！１０ターンの間にゲームを進めよう。</p>
+            <h3>村人</h3>
+            <p>さいころを振って鬼から逃げよう！イベントマスに止まったら、ポイント獲得かイベントの発生を選択しよう。
+              全ターン終了までに逃げ切った人の中で、最も多くのポイントを獲得した村人が勝利！
+              注意！！他の村人と同じマスには止まれないよ。</p>
+            <h3>鬼</h3>
+            <p>さいころを振って村人を捕まえよう！村人と同じマスに止まると捕まえられるよ。イベントマスに止まると、イベントが発生！？ゲームを有利に進めよう。
+              全てのターンが終了するまでに村人を全員捕まえたら鬼の勝利！</p>
             <button onClick={toggleRulePopup} className="close-button">閉じる</button>
           </div>
         </div>
