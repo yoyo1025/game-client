@@ -125,3 +125,39 @@
   justify-content: flex-end;
   margin: 20px;
 }
+
+/* 登録完了画面のスタイル */
+.success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 画面全体に中央寄せ */
+  text-align: center;
+}
+
+.success-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #4CAF50; /* 成功の色（緑色） */
+}
+
+.success-container p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.back-home-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-home-button:hover {
+  background-color: #45a049;
+}
