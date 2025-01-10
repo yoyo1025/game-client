@@ -163,6 +163,57 @@
   background-color: #45a049;
 }
 
+/*戦績確認画面*/
+.battle-result {
+  padding: 20px;
+  text-align: center;
+}
+
+.result-title{
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #ff69b4;
+}
+
+.result-summary{
+  display: flex;
+  justify-content: center;
+}
+
+.result-table-wrapper {
+  max-height: 200px; 
+  overflow-y: auto; 
+  border: 2px solid #000; 
+  border-radius: 5px; 
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.result-table th,
+.result-table td {
+  padding: 12px;
+  border: 1px solid #ffefd5;
+  text-align: center;
+}
+
+.result-table th {
+  background-color: #ffefd5;
+  font-weight: bold;
+}
+
+.result-table tr:nth-child(even) {
+  background-color: #ff1493;
+}
+
+
+
+
+
+
 /*ログイン画面*/
 body.login-page{
   background-color: #ffefd5;

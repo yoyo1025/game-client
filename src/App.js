@@ -8,6 +8,8 @@ import React from "react";
 import Register from "./components/Register";
 import Battle from "./components/Battle";
 import PlayerStatus from "./components/PlayerStatus";
+import BattleResult from "./components/BattleResult";
+
 
 export default function App() {
   return (
@@ -19,6 +21,7 @@ export default function App() {
         <Route path="/room-join" element={<RoomJoin />}/>
         <Route path="/register-complete" element={<RegisterComplete />}/>
         <Route path="/login" element={<Login />} />
+        <Route path="/battleresult" element={<BattleResult />} />
         <Route path="/battle" element={<Battle/>}/>
         <Route path="/player-status" element={<PlayerStatus/>}/>
       </Routes>
