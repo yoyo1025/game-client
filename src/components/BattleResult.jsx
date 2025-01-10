@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 export default function BattleResult() {
+  const navigate = useNavigate();
   // 戦績データの例（実際はバックエンドやローカルストレージから取得）
   const [battleResults] = useState([
     { date: "2025-01-01 14:00", role: "村人", result: "勝ち" },
@@ -14,6 +16,10 @@ export default function BattleResult() {
   const totalMatches = battleResults.length;
   const victories = battleResults.filter(result => result.result === "勝ち").length;
   const capturedAll = battleResults.filter(result => result.role === "鬼" && result.result === "勝ち").length;
+
+  const handleBack = () => {
+    navigate("/"); // トップページに戻る
+  };
 
 
   return (
@@ -51,6 +57,12 @@ export default function BattleResult() {
         </tbody>
       </table>
       </div>
+      <button
+          className="back-button"
+          onClick={(handleBack)}
+        >
+          トップ画面に戻る
+        </button>
     </div>
   );
 }
