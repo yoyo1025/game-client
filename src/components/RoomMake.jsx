@@ -1,11 +1,13 @@
 import "../Room.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function RoomMake() {
   const initialValues = { roomname: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [statusMessage, setStatusMessage] = useState(null);
+  const navigate = useNavigate(); // ページ遷移用
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +19,6 @@ export default function RoomMake() {
     const errors = validate(formValues);
     setFormErrors(errors);
 
-    // バリデーションエラーがなければAPI送信
     if (Object.keys(errors).length === 0) {
       try {
         const response = await fetch("http://localhost:8080/make-room", {
@@ -35,12 +36,12 @@ export default function RoomMake() {
 
         const data = await response.json();
         console.log("API Response:", data);
-        setStatusMessage({ type: "success", text: "ルーム作成に成功しました！" });
+
+        // 成功時に RoomPassword 画面に遷移し、パスワードを渡す
+        navigate("/room-password", { state: { password: data.message } });
       } catch (error) {
         console.error("エラー:", error);
         setStatusMessage({ type: "error", text: error.message || "エラーが発生しました。" });
-      } finally {
-        setTimeout(() => setStatusMessage(null), 1500);
       }
     } else {
       setStatusMessage({ type: "error", text: "入力内容を確認してください。" });

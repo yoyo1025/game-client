@@ -36,7 +36,8 @@ h1 {
   border: 1px solid #dfefef;
   padding: 30px;
   border-radius: 10px;
-  background-color: #fbf5f5;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
   box-shadow: 2px 12px 17px -7px #383838;
   border-radius: 15px;
 }
@@ -102,6 +103,22 @@ h1 {
   background-color: #0e528d;
 }
 
+.submitButton2 {
+  background: #0563b4;
+  width: 45%;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.submitButton2:hover {
+  background-color: #0e528d;
+}
+
 /* 成功/失敗メッセージ */
 .statusMessage {
   text-align: center;
@@ -146,4 +163,21 @@ h1 {
     opacity: 0;
     transform: translateY(-10px);
   }
+}
+
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.successMessage {
+  text-align: center;
+  font-size: 20px;
+  color: #155724;
+  background-color: #d4edda;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #c3e6cb;
 }

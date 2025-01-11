@@ -8,6 +8,7 @@ import React from "react";
 import Register from "./components/Register";
 import Battle from "./components/Battle";
 import PlayerStatus from "./components/PlayerStatus";
+import RoomPassword from "./components/RoomPassword";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/room-make" element={<RoomMake />}/>
+        <Route path="/room-password" element={<RoomPassword />} />
         <Route path="/room-join" element={<RoomJoin />}/>
         <Route path="/register-complete" element={<RegisterComplete />}/>
         <Route path="/login" element={<Login />} />
