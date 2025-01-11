@@ -5,7 +5,6 @@ export default function RoomMake() {
   const initialValues = { roomname: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
 
   const handleChange = (e) => {
@@ -13,21 +12,37 @@ export default function RoomMake() {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-  };
+    const errors = validate(formValues);
+    setFormErrors(errors);
 
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      setStatusMessage({ type: "success", text: "ルーム作成に成功しました！" });
-      setTimeout(() => setStatusMessage(null), 1500); // 3秒後に非表示
-    } else if (isSubmit) {
-      setStatusMessage({ type: "error", text: "ルーム作成に失敗しました！" });
-      setTimeout(() => setStatusMessage(null), 1500); // 3秒後に非表示
+    // バリデーションエラーがなければAPI送信
+    if (Object.keys(errors).length === 0) {
+      try {
+        const response = await fetch("http://localhost:8080/make-room", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ roomName: formValues.roomname }),
+        });
+
+        if (!response.ok) {
+          throw new Error("ルーム作成に失敗しました");
+        }
+
+        const data = await response.json();
+        console.log("API Response:", data);
+        setStatusMessage({ type: "success", text: "ルーム作成に成功しました！" });
+      } catch (error) {
+        console.error("エラー:", error);
+        setStatusMessage({ type: "error", text: "ルーム作成に失敗しました！" });
+      } finally {
+        setTimeout(() => setStatusMessage(null), 1500); // 1.5秒後に非表示
+      }
     }
-  }, [formErrors]);
+  };
 
   const validate = (values) => {
     const errors = {};
