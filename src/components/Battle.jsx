@@ -192,6 +192,22 @@ export default function Battle() {
           setPlayerPositions(gameState.playerPositions || {});
         });
 
+        stompClient.subscribe('/topic/skip-turn', (message) => {
+          const gameState = JSON.parse(message.body);
+          console.log("Game state received:", gameState);
+
+          // 受け取ったgameStateからReactのStateを更新
+          setPlayers(gameState.players || []);
+          setTurn({
+            maxTurn: gameState.turn.maxTurn || 0,
+            currentTurn: gameState.turn.currentTurn || 0,
+            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+            maxTurnReached: gameState.turn.maxTurnReached || false,
+          });
+          setPlayerPositions(gameState.playerPositions || {});
+        });
+
         // 切断通知を受け取る購読（オプション）
         stompClient.subscribe("/topic/user-disconnected", (msg) => {
           console.log("User disconnected message:", msg.body);
