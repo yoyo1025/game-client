@@ -29,7 +29,8 @@ export default function RoomMake() {
         });
 
         if (!response.ok) {
-          throw new Error("ルーム作成に失敗しました");
+          const errorData = await response.json();
+          throw new Error(errorData.message || "ルーム作成に失敗しました");
         }
 
         const data = await response.json();
@@ -37,10 +38,12 @@ export default function RoomMake() {
         setStatusMessage({ type: "success", text: "ルーム作成に成功しました！" });
       } catch (error) {
         console.error("エラー:", error);
-        setStatusMessage({ type: "error", text: "ルーム作成に失敗しました！" });
+        setStatusMessage({ type: "error", text: error.message || "エラーが発生しました。" });
       } finally {
-        setTimeout(() => setStatusMessage(null), 1500); // 1.5秒後に非表示
+        setTimeout(() => setStatusMessage(null), 1500);
       }
+    } else {
+      setStatusMessage({ type: "error", text: "入力内容を確認してください。" });
     }
   };
 
