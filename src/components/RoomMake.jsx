@@ -1,56 +1,62 @@
-import "../App.css";
-import { useNavigate } from "react-router-dom";
+import "../Room.css";
 import React, { useState, useEffect } from "react";
 
-export default function RoomCreate() {
-  const navigate = useNavigate();
+export default function RoomMake() {
+  const initialValues = { roomname: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErros, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  // 部屋番号とメンバーリストの状態を管理
-  const [roomNumber, setRoomNumber] = useState("");
-  const [members] = useState(["ホスト"]); // 初期状態に部屋作成者を追加
-
-  useEffect(() => {
-    // ランダムな部屋番号を生成
-    const generateRoomNumber = () => {
-      return Math.floor(1000 + Math.random() * 9000).toString(); // 4桁のランダムな数字
-    };
-    setRoomNumber(generateRoomNumber());
-  }, []);
-
-  const handleExit = () => {
-    // 退出処理をここに記述
-    console.log("退出しました");
-    navigate("/"); // トップ画面へ遷移
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleStartGame = () => {
-    // ゲーム開始処理をここに記述
-    console.log("ゲームを開始します");
-    alert("ゲームが開始されました！");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErros).length === 0 && isSubmit) {
+      console.log("ルーム作成データ", formValues);
+    }
+  }, [formErros]);
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.roomname) {
+      errors.roomname = "ルーム名を入力してください。";
+    }
+    return errors;
   };
 
   return (
-    <div className="make-or-join-room">
-      <div className="make-room-gourp">
-        {/* 部屋番号を表示 */}
-        <p>部屋番号: {roomNumber}</p>
-        <p>参加メンバー:</p>
-        {/* メンバーリストを表示 */}
-        <ul>
-          {members.map((member, index) => (
-            <li key={index}>{member}</li>
-          ))}
-        </ul>
-
-        <div className="button-group">
-          <button className="make-room-button" onClick={handleExit}>
-            退出
+    <div className="formContainer">
+      <form onSubmit={handleSubmit}>
+        <h1>ルーム作成</h1>
+        <hr />
+        <div className="uiForm">
+          <div className="formField">
+            <label>ルーム名</label>
+            <input
+              type="text"
+              name="roomname"
+              placeholder="ルーム名"
+              value={formValues.roomname}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <p className="errorMsg">{formErros.roomname}</p>
+          <button type="submit" className="submitButton">
+            登録
           </button>
-          <button className="make-room-button" onClick={handleStartGame}>
-            ゲームスタート
-          </button>
+          {Object.keys(formErros).length === 0 && isSubmit && (
+            <div className="msgOk">ルーム作成に成功しました</div>
+          )}
         </div>
-      </div>
+      </form>
     </div>
   );
 }

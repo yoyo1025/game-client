@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+.formContainer {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff); /* グラデーション色 */
+  background-size: 400% 400%; /* グラデーションの大きさ */
+  animation: gradient 10s ease infinite; /* アニメーションを適用 */
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%; /* 初期位置 */
+  }
+  50% {
+    background-position: 100% 50%; /* 中間位置 */
+  }
+  100% {
+    background-position: 0% 50%; /* 終了位置 */
+  }
+}  
+
+h1 {
+  text-align: center;
+  margin: 13px 0;
+}
+
+.formContainer form {
+  width: 70%;
+  max-width: 450px;
+  border: 1px solid #dfefef;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #fbf5f5;
+  box-shadow: 2px 12px 17px -7px #383838;
+  border-radius: 15px;
+}
+
+.uiForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 400px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formField input {
+  border: 1px solid grey;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.formField input {
+  box-sizing: border-box; 
+  width: 100%;
+  padding: 10px; /* 必要に応じて調整 */
+}
+
+
+.formField input:focus {
+  outline: none;
+}
+
+.formField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.submitButton {
+  background: #0563b4;
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #0e528d;
+}
+
+
+.errorMsg {
+  color: red;
+  margin: 0;
+  align-self: flex-start;
+}
+
+.msgOk {
+  color: green;
+  margin-top: 15px;
+}
