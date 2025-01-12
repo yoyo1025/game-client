@@ -1,10 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import RoomMake from "./components/RoomMake";
-import RoomJoin from "./components/RoomJoin"
-import RegisterComplete from "./components/RegisterComplete"
-import Login from "./components/Login"
-import React from "react";
+import RoomJoin from "./components/RoomJoin";
 import Register from "./components/Register";
 import Battle from "./components/Battle";
 import PlayerStatus from "./components/PlayerStatus";

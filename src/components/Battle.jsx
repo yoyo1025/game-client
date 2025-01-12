@@ -21,10 +21,15 @@ export default function Battle() {
   const [diceRoll, setDiceRoll] = useState(1);
   const [movableSquares, setMovableSquares] = useState([]);
   const [movable, setMovable] = useState(false);
+  const [event1, setEvent1] = useState(false);
+  const [event2, setEvent2] = useState(false);
+  const [event3, setEvent3] = useState(false);
+  const [prepareEvent, setPrepareEvent] = useState(false);
   const user = useContext(UserContext);
 
   const fetchDiceResult = async () => {
     try {
+
       const res = await fetch('http://localhost:8000/api/dice',{ 
         method: 'POST',
         headers: {
@@ -172,6 +177,38 @@ export default function Battle() {
           setPlayerPositions(gameState.playerPositions || {});
         });
 
+        stompClient.subscribe('/topic/change-position', (message) => {
+          const gameState = JSON.parse(message.body);
+          console.log("Game state received:", gameState);
+
+          // 受け取ったgameStateからReactのStateを更新
+          setPlayers(gameState.players || []);
+          setTurn({
+            maxTurn: gameState.turn.maxTurn || 0,
+            currentTurn: gameState.turn.currentTurn || 0,
+            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+            maxTurnReached: gameState.turn.maxTurnReached || false,
+          });
+          setPlayerPositions(gameState.playerPositions || {});
+        });
+
+        stompClient.subscribe('/topic/skip-turn', (message) => {
+          const gameState = JSON.parse(message.body);
+          console.log("Game state received:", gameState);
+
+          // 受け取ったgameStateからReactのStateを更新
+          setPlayers(gameState.players || []);
+          setTurn({
+            maxTurn: gameState.turn.maxTurn || 0,
+            currentTurn: gameState.turn.currentTurn || 0,
+            currentPlayerIndex: gameState.turn.currentPlayerIndex || 0,
+            maxPlayerIndex: gameState.turn.maxPlayerIndex || 0,
+            maxTurnReached: gameState.turn.maxTurnReached || false,
+          });
+          setPlayerPositions(gameState.playerPositions || {});
+        });
+
         // 切断通知を受け取る購読（オプション）
         stompClient.subscribe("/topic/user-disconnected", (msg) => {
           console.log("User disconnected message:", msg.body);
@@ -202,7 +239,20 @@ export default function Battle() {
           onDiceRoll={fetchDiceResult} 
           diceRoll={diceRoll}
         />
-        <Event />
+        <Event 
+          prepareEvent={prepareEvent}
+          setPrepareEvent={setPrepareEvent}
+          event1={event1}
+          event2={event2}
+          event3={event3}
+          setEvent1={setEvent1}
+          setEvent2={setEvent2}
+          setEvent3={setEvent3}
+          players={players}
+          userId={user.userId}
+          currentPlayerIndex={turn.currentPlayerIndex}
+          playerPositions={playerPositions}
+        />
       </div>
       <Field 
         playerPositions={playerPositions} 
@@ -216,6 +266,7 @@ export default function Battle() {
         setPlayers={setPlayers}
         setTurn={setTurn}
         playersStatus={players}
+        setPrepareEvent={setPrepareEvent}
       />
       <PlayerStatus 
         players={players} 
