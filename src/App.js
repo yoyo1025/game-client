@@ -7,6 +7,8 @@ import Battle from "./components/Battle";
 import PlayerStatus from "./components/PlayerStatus";
 import RoomPassword from "./components/RoomPassword";
 import RoomStandby from "./components/RoomStandby";
+import Login from "./components/Login";
+import RegisterComplete from "./components/RegisterComplete";
 
 export default function App() {
   return (
