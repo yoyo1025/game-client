@@ -13,9 +13,15 @@ export default function RoomStandby() {
     if (!lobbyStompClient) {
       // 初回接続先
       lobbyStompClient = Stomp.over(() => new SockJS("http://localhost:8080/lobby-websocket"));
-      lobbyStompClient.connect({ userId: "myUserId" }, () => {
+      lobbyStompClient.connect({ 
+        userId: "myUserId",
+        roomId: roomId
+      }, () => {
         console.log("Connected to WebSocket");
-        
+
+        lobbyStompClient.subscribe(`/topic/room/${roomId}`, (message) => {
+          console.log(message.body);
+        })
       })
     }
   }, [])
