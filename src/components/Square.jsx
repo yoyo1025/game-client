@@ -20,7 +20,8 @@ export default function Square({
   currentPlayerIndex,
   setPlayers,
   setTurn,
-  setPlayerPositions
+  setPlayerPositions,
+  setPrepareEvent
 }) {
   // モーダル表示を管理するためのステート
   const [showModal, setShowModal] = useState(false);
@@ -82,6 +83,7 @@ export default function Square({
     console.log("イベント実行が選択されました");
     setShowModal(false);
     onClickMove(x, y);
+    setPrepareEvent(true);
   };
 
   // モーダルを閉じる
