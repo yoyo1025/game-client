@@ -8,6 +8,9 @@ export default function RoomStandby() {
   const roomId = location.state?.roomId; // 前の画面から roomId を受け取る
   const token = localStorage.getItem("jwt"); // ログインで取得したトークン
 
+  // プレイヤー情報を格納するためのstate
+  const [players, setPlayers] = useState([]);
+
   useEffect(() => {
     let lobbyStompClient = null;
     if (!lobbyStompClient) {
@@ -21,15 +24,25 @@ export default function RoomStandby() {
 
         lobbyStompClient.subscribe(`/topic/room/${roomId}`, (message) => {
           console.log(message.body);
+          const playerData = JSON.parse(message.body);
+          setPlayers(playerData);
         })
       })
     }
-  }, [])
+  }, [roomId, token])
 
   return(
     <>
       <div>スタンバイ画面です</div>
       <div>部屋ID: {roomId}</div>
+      <div>プレイヤーリスト:</div>
+      <ul>
+        {players.map((player) => (
+          <li key={player.sessionId}>
+            <strong>名前:</strong> {player.userName} | <strong>ID:</strong> {player.userId}
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
