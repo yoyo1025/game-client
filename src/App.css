@@ -125,3 +125,234 @@
   justify-content: flex-end;
   margin: 20px;
 }
+
+
+/* 登録完了画面のスタイル */
+.success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 画面全体に中央寄せ */
+  text-align: center;
+}
+
+.success-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #4CAF50; /* 成功の色（緑色） */
+}
+
+.success-container p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.back-home-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-home-button:hover {
+  background-color: #45a049;
+}
+
+/*戦績確認画面*/
+.battle-result {
+  padding: 20px;
+  text-align: center;
+}
+
+.result-title{
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #ff69b4;
+}
+
+.result-summary{
+  display: flex;
+  justify-content: center;
+}
+
+.result-table-wrapper {
+  max-height: 200px; 
+  overflow-y: auto; 
+  border: 2px solid #000; 
+  border-radius: 5px; 
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.result-table th,
+.result-table td {
+  padding: 12px;
+  border: 1px solid #ffefd5;
+  text-align: center;
+}
+
+.result-table th {
+  background-color: #ffefd5;
+  font-weight: bold;
+}
+
+.result-table tr:nth-child(even) {
+  background-color: #ff1493;
+}
+
+
+
+
+
+
+/*ログイン画面*/
+body.login-page{
+  background-color: #ffefd5;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #ff6b6b;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.login-container{
+  padding: 40px;
+  align-items: center;/*中央揃え*/
+  flex-direction: column;
+  width: 70%;
+  max-width: 800px;
+  height: auto;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #fff;/*背景色*/
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/*タイトルロゴ*/
+.character{
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+/*入力フィールドのグループ*/
+.loginform-group{
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+/*入力フィールド*/
+input{
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #ffc0cb;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+input:focus{
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 5px rgba(255, 192, 203, 0.5);
+}
+
+/*ログインボタン*/
+.login-button{
+  width: 100%;
+  padding: 10px;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: backgroud-color 0.3s ease;
+}
+
+.login-button:hover{
+  background-color: #ff1493;
+}
+
+/*新規会員登録ボタン*/
+.register-button{
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  border:none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: backgroud-color 0.3s ease;
+}
+
+.register-button:hover{
+  background-color: #ff1493;
+}
+
+@media(max-width:768px){
+  .login-container{
+    width: 90%;
+  }
+
+  .character{
+    width: 150px;
+  }
+}
+
+
+.register-form {
+  width: 1000px;
+  margin: 50px auto;
+  padding: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.register-form h2 {
+  margin-bottom: 20px;
+  font-size: 35px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 30px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.back-button {
+  margin-top: 30px;
+  background-color: #6c757d;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
