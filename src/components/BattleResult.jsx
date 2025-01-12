@@ -1,21 +1,64 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 export default function BattleResult() {
   const navigate = useNavigate();
-  // 戦績データの例（実際はバックエンドやローカルストレージから取得）
-  const [battleResults] = useState([
-    { date: "2025-01-01 14:00", role: "村人", result: "勝ち" },
-    { date: "2025-01-02 15:00", role: "鬼", result: "負け" },
-    { date: "2025-01-03 16:00", role: "村人", result: "負け" },
-    { date: "2025-01-04 17:00", role: "鬼", result: "勝ち" },
-    { date: "2025-01-04 20:00", role: "村人", result: "勝ち" },
 
-  ]);
-  const totalMatches = battleResults.length;
-  const victories = battleResults.filter(result => result.result === "勝ち").length;
-  const capturedAll = battleResults.filter(result => result.role === "鬼" && result.result === "勝ち").length;
+  const [battleResults, setBattleResults] = useState([]);
+  const [totalMatches, setTotalMatches] = useState(0);
+  const [victories, setVictories] = useState(0);
+  const [capturedAll, setCapturedAll] = useState(0);
+
+  useEffect(() => {
+
+    // ローカルストレージからJWTトークンを取得
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+      alert("ログインが必要です。");
+      navigate("/login");
+      return;
+    }
+
+    const fetchBattleResults = async () => {
+      const url = "http://localhost:8080/battlerecord/12"; 
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // JWTトークンをAuthorizationヘッダーに設定
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+          // エラーレスポンスの場合
+          const errorData = await response.json();
+          console.error("エラー:", errorData);
+          alert("戦績の取得に失敗しました。");
+          return;
+        }
+
+        const data = await response.json();
+        setBattleResults(data.battles);
+        setTotalMatches(data.totalMatches);
+        setVictories(data.totalWins);
+        setCapturedAll(data.demonWins);
+      } catch (error) {
+        console.error("エラーが発生しました:", error);
+        alert("戦績の取得中にエラーが発生しました。");
+      }
+    };
+
+    fetchBattleResults();
+  }, [navigate]);
+
+
+
+
 
   const handleBack = () => {
     navigate("/"); // トップページに戻る
@@ -32,7 +75,7 @@ export default function BattleResult() {
       
       <div className="result-summary">
         <img src="./championshipcup.png" alt="優勝カップ" width={150}/>
-        <p><strong>優勝回数:</strong> {victories} 回</p>
+        <p><strong>勝利回数:</strong> {victories} 回</p>
         <img src="./kanabou.png" alt="鬼の金棒" width={200}/>
         <p><strong>全員捕まえた回数:</strong> {capturedAll} 回</p>
       </div>
@@ -49,7 +92,7 @@ export default function BattleResult() {
         <tbody>
           {battleResults.map((result, index) => (
             <tr key={index}>
-              <td>{result.date}</td>
+              <td>{result.playDate}</td>
               <td>{result.role}</td>
               <td>{result.result}</td>
             </tr>
