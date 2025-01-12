@@ -37,7 +37,7 @@ export default function RoomJoin() {
         const data = await response.json();
         console.log("API Response:", data);
 
-        navigate("/room-standby");
+        navigate("/room-standby", { state: { roomId: data.roomId } })
       } catch (error) {
         console.error("エラー:", error);
         setStatusMessage({ type: "error", text: error.message || "エラーが発生しました。" });
