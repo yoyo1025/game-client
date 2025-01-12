@@ -6,7 +6,7 @@ import SockJS from "sockjs-client";
 export default function RoomStandby() {
   const location = useLocation();
   const roomId = location.state?.roomId; // 前の画面から roomId を受け取る
-  console.log("roomId: " + roomId);
+  const token = localStorage.getItem("jwt"); // ログインで取得したトークン
 
   useEffect(() => {
     let lobbyStompClient = null;
@@ -14,7 +14,7 @@ export default function RoomStandby() {
       // 初回接続先
       lobbyStompClient = Stomp.over(() => new SockJS("http://localhost:8080/lobby-websocket"));
       lobbyStompClient.connect({ 
-        userId: "myUserId",
+        Authorization: `Bearer ${token}`,
         roomId: roomId
       }, () => {
         console.log("Connected to WebSocket");
