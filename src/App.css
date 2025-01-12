@@ -63,7 +63,6 @@
   align-items: center;
   font-weight: bold;
   font-size: x-large;
-  gap: 10px;
   margin-top: 10%;
   margin-left: 120px;
 }
@@ -127,6 +126,7 @@
   margin: 20px;
 }
 
+
 /* 登録完了画面のスタイル */
 .success-container {
   display: flex;
@@ -162,6 +162,57 @@
 .back-home-button:hover {
   background-color: #45a049;
 }
+
+/*戦績確認画面*/
+.battle-result {
+  padding: 20px;
+  text-align: center;
+}
+
+.result-title{
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #ff69b4;
+}
+
+.result-summary{
+  display: flex;
+  justify-content: center;
+}
+
+.result-table-wrapper {
+  max-height: 200px; 
+  overflow-y: auto; 
+  border: 2px solid #000; 
+  border-radius: 5px; 
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.result-table th,
+.result-table td {
+  padding: 12px;
+  border: 1px solid #ffefd5;
+  text-align: center;
+}
+
+.result-table th {
+  background-color: #ffefd5;
+  font-weight: bold;
+}
+
+.result-table tr:nth-child(even) {
+  background-color: #ff1493;
+}
+
+
+
+
+
 
 /*ログイン画面*/
 body.login-page{
@@ -200,7 +251,7 @@ body.login-page{
   width: 100%;
 }
 
-/*入力フィールド*/
+/* 入力フィールド* */
 input{
   width: 100%;
   padding: 10px 15px;
@@ -213,7 +264,7 @@ input:focus{
   outline: none;
   border-color: #ff69b4;
   box-shadow: 0 0 5px rgba(255, 192, 203, 0.5);
-}
+} 
 
 /*ログインボタン*/
 .login-button{
@@ -261,6 +312,7 @@ input:focus{
   }
 }
 
+
 .register-form {
   width: 1000px;
   margin: 50px auto;
@@ -304,5 +356,3 @@ input:focus{
 .back-button:hover {
   background-color: #5a6268;
 }
-
-

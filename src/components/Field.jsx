@@ -16,7 +16,8 @@ export default function Field({
   playersStatus,
   setPlayers,
   setTurn,
-  setPlayerPositions
+  setPlayerPositions,
+  setPrepareEvent
 }) {
   const gridSize = 9; // 9×9 のマス目サイズ
 
@@ -38,7 +39,7 @@ export default function Field({
   const handleMove = async (x, y) => {
     console.log(`Moving to (${x}, ${y})`);
     try {
-      const res = await fetch("http://localhost:8080/api/move", {
+      const res = await fetch("http://localhost:8000/api/move", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -107,6 +108,7 @@ export default function Field({
               setPlayers={setPlayers}
               setTurn={setTurn}
               setPlayerPositions={setPlayerPositions}
+              setPrepareEvent={setPrepareEvent}
             />
           );
         })

@@ -1,7 +1,6 @@
 // EventModal.jsx
 import React, { useContext } from "react";
 import "../Game.css";
-import { UserContext } from "./Home";
 
 export default function EventModal({ 
   onClose, 
