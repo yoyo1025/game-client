@@ -8,6 +8,8 @@ export default function PlayerStatus({ players, turn, userId }) {
     "demon-status-icon.svg",
   ];
 
+  console.log("userIdは"+userId+"です。");
+  
   return (
     <>
       <div style={{display: "flex", flexDirection: "column", textAlign: "center"}}>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 // 1001～1004の間で乱数を生成し、Contextに格納
-const randomId = Math.floor(Math.random() * 4) + 1001;
+const randomId = Math.floor(Math.random() * 4) + 1000;
 export const user = {
   userId: randomId,
   userName: `ランダムユーザー${randomId}`,
