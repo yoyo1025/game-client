@@ -7,6 +7,19 @@ export default function RoomStandby() {
   const location = useLocation();
   const roomId = location.state?.roomId; // 前の画面から roomId を受け取る
   console.log("roomId: " + roomId);
+
+  useEffect(() => {
+    let lobbyStompClient = null;
+    if (!lobbyStompClient) {
+      // 初回接続先
+      lobbyStompClient = Stomp.over(() => new SockJS("http://localhost:8080/lobby-websocket"));
+      lobbyStompClient.connect({ userId: "myUserId" }, () => {
+        console.log("Connected to WebSocket");
+        
+      })
+    }
+  }, [])
+
   return(
     <>
       <div>スタンバイ画面です</div>
