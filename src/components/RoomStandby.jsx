@@ -1,12 +1,13 @@
 import { Stomp } from "@stomp/stompjs";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SockJS from "sockjs-client";
 
 export default function RoomStandby() {
   const location = useLocation();
   const roomId = location.state?.roomId; // 前の画面から roomId を受け取る
   const token = localStorage.getItem("jwt"); // ログインで取得したトークン
+  const navigate = useNavigate();
 
   // プレイヤー情報を格納するためのstate
   const [players, setPlayers] = useState([]);
@@ -27,6 +28,13 @@ export default function RoomStandby() {
           const playerData = JSON.parse(message.body);
           setPlayers(playerData);
         })
+
+        lobbyStompClient.subscribe(`/topic/room/${roomId}/completed`, (message) => {
+          console.log(message.body); // "Game Start!" など
+          alert("全員が準備完了しました。バトル画面に遷移します！");
+          navigate("/battle"); // バトル画面に遷移
+        });
+
       })
     }
   }, [roomId, token])
