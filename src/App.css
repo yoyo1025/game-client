@@ -63,7 +63,6 @@
   align-items: center;
   font-weight: bold;
   font-size: x-large;
-  gap: 10px;
   margin-top: 10%;
   margin-left: 120px;
 }
@@ -126,6 +125,7 @@
   justify-content: flex-end;
   margin: 20px;
 }
+
 
 /* 登録完了画面のスタイル */
 .success-container {
@@ -312,6 +312,7 @@ input:focus{
   }
 }
 
+
 .register-form {
   width: 1000px;
   margin: 50px auto;
@@ -355,5 +356,3 @@ input:focus{
 .back-button:hover {
   background-color: #5a6268;
 }
-
-
