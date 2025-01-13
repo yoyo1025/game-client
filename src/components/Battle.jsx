@@ -29,7 +29,6 @@ export default function Battle() {
 
   const fetchDiceResult = async () => {
     try {
-
       const res = await fetch('http://localhost:8000/api/dice',{ 
         method: 'POST',
         headers: {
