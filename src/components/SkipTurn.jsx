@@ -15,7 +15,7 @@ export default function SkipTurnModal({
   const handleSkipTurn = async (index) => {
     try {
       
-      const res = await fetch("http://localhost:8080/api/skip-turn", {
+      const res = await fetch("http://localhost:8000/api/skip-turn", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

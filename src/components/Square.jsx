@@ -30,7 +30,7 @@ export default function Square({
 
   const fetchPoint = async () => {
     try {
-      const res = await fetch('http://localhost:8080/api/get-point', {
+      const res = await fetch('http://localhost:8000/api/get-point', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
