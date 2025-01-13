@@ -21,7 +21,7 @@ export default function ExchangeEventModal({
       console.log("x: " + playerPositions[index + 1].x);
       console.log("y: " + playerPositions[index + 1].y);
       
-      const res = await fetch("http://localhost:8080/api/change-position", {
+      const res = await fetch("http://localhost:8000/api/change-position", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
