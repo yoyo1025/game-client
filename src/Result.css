@@ -3,24 +3,27 @@
 .result-screen {
   padding: 2rem;
   text-align: center;
-  height: 100vh; /* ビューポート全体の高さ */
-  width: 100vw; /* ビューポート全体の幅 */
-  background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff); /* グラデーション色 */
-  background-size: 400% 400%; /* グラデーションの大きさ */
-  animation: gradient 10s ease infinite; /* アニメーションを適用 */
+  min-height: 100vh; /* 最小ビューポート全体の高さ */
+  width: 100%;
+  background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff); /* グラデーション */
+  background-size: 200% 200%; /* グラデーションアニメーションのサイズを調整 */
+  animation: gradient 10s ease infinite; /* アニメーション */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* コンテンツを縦方向に中央寄せ */
 }
 
 @keyframes gradient {
   0% {
-    background-position: 0% 50%; /* 初期位置 */
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 50%; /* 中間位置 */
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 50%; /* 終了位置 */
+    background-position: 0% 50%;
   }
-}  
+}
 
 .title {
   font-family: 'Zen Maru Gothic', sans-serif;
@@ -63,7 +66,12 @@
 .table_design09 tbody th {
   color: #4d9bc1;
 }
+
 @media screen and (max-width: 787px) {
+  .result-screen {
+    padding: 1rem;
+  }
+
   .table_design09 {
     border-radius: 0;
     text-align: left;
@@ -90,8 +98,8 @@
     background-color: #e6f1f6;
     font-weight: bold;
     display: inline-block;
-    width: 20%;
-    min-width: 4em;
+    width: 35%;
+    min-width: 5em;
     text-align: center;
     margin-right: 0.5em;
     padding: 4px;
