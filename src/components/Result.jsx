@@ -24,35 +24,37 @@ export default function Result() {
 
   return (
     <div className="result-screen">
-    <h1 className="title">ゲーム結果</h1>
-    <h2 className="winner-message">{winnerMessage}</h2>
+      <div className="result-container">
+        <h1 className="title">ゲーム結果</h1>
+          <h2 className="winner-message">{winnerMessage}</h2>
 
-    <table className="table_design09">
-      <thead>
-        <tr>
-          <th>名前</th>
-          <th>役割</th>
-          <th>結果</th>
-          <th>ポイント</th>
-          <th>順位</th>
-        </tr>
-      </thead>
-      <tbody>
-        {records.map((record, idx) => (
-          <tr key={idx}>
-            <th>{record.user_name}</th>
-            <td data-label="役割">{record.role}</td>
-            <td data-label="結果">{record.is_win ? "勝ち" : "負け"}</td>
-            <td data-label="ポイント">{record.point}</td>
-            <td data-label="順位">{record.ranking}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    <div className="button-container">
-      <button className="result-button" onClick={() => alert("ログアウトしました")}>ログアウト</button>
-      <button className="result-button" onClick={() => alert("ホーム画面に戻ります")}>ホームへ</button>
+          <table className="table_design09">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>役割</th>
+                <th>結果</th>
+                <th>ポイント</th>
+                <th>順位</th>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((record, idx) => (
+                <tr key={idx}>
+                  <th>{record.user_name}</th>
+                  <td data-label="役割">{record.role}</td>
+                  <td data-label="結果">{record.is_win ? "勝ち" : "負け"}</td>
+                  <td data-label="ポイント">{record.point}</td>
+                  <td data-label="順位">{record.ranking}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="button-container">
+            <button className="result-button" onClick={() => alert("ログアウトしました")}>ログアウト</button>
+            <button className="result-button" onClick={() => alert("ホーム画面に戻ります")}>ホームへ</button>
+          </div>
+      </div>
     </div>
-  </div>
   );
 }
