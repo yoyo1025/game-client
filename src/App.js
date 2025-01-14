@@ -9,6 +9,7 @@ import RoomPassword from "./components/RoomPassword";
 import RoomStandby from "./components/RoomStandby";
 import Login from "./components/Login";
 import RegisterComplete from "./components/RegisterComplete";
+import Result from "./components/Result";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/battle" element={<Battle/>}/>
         <Route path="/player-status" element={<PlayerStatus/>}/>
+        <Route path="/result" element={<Result />} />
       </Routes>
     </div>
   )

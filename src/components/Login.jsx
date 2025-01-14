@@ -36,7 +36,7 @@ const Login = () =>{
             // トークンを localStorage に保存
             if (data.token) {
                 localStorage.setItem("jwt", data.token);
-         //console.log("保存されたトークン:", localStorage.getItem("authToken")); 
+                localStorage.setItem("userId", data.userId);
                 alert("ログインに成功しました!");
                 navigate("/"); // ログイン成功後にホーム画面に遷移
             } else {
