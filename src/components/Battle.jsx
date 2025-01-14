@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import SockJS from 'sockjs-client';
 import { Stomp } from "@stomp/stompjs";
 import { UserContext } from "./Home";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 export default function Battle() {
@@ -29,7 +29,7 @@ export default function Battle() {
   const user = useContext(UserContext);
   const location = useLocation();
   const roomId = location.state?.roomId;
-  console.log("ルームID!!!!!!!!!!!!!!!!!" + roomId);
+  const navigate = useNavigate();
   
 
   const fetchDiceResult = async () => {
@@ -211,6 +211,13 @@ export default function Battle() {
             maxTurnReached: gameState.turn.maxTurnReached || false,
           });
           setPlayerPositions(gameState.playerPositions || {});
+        });
+
+        stompClient.subscribe('/topic/end-game', (message) => {
+          console.log("ゲーム結果！！！！");
+          console.log(message.body);
+          alert("ゲームが終了しました！結果画面へ遷移します！！");
+          navigate("/result");
         });
 
         // 切断通知を受け取る購読（オプション）
