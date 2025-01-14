@@ -88,7 +88,7 @@ export default function RoomJoin() {
               {statusMessage.text}
             </div>
           )}
-          <button type="submit" className="submitButton">
+          <button type="submit" className="room-button">
             参加
           </button>
         </div>

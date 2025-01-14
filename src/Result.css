@@ -34,8 +34,11 @@
 
 .title {
   font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+  /* font-size: 3rem;
+  margin-bottom: 0.5rem; */
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  padding-bottom: 2px;
 }
 
 .winner-message {

@@ -89,7 +89,7 @@ export default function RoomMake() {
               {statusMessage.text}
             </div>
           )}
-          <button type="submit" className="submitButton">
+          <button type="submit" className="room-button">
             登録
           </button>
         </div>
