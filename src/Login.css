@@ -1,8 +1,3 @@
-/* -------------------------------------
-   Googleフォント読み込みなど必要であれば追加
-   RoomMake と同じフォントを使うなら:
-   @import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap");
-------------------------------------- */
 
 .formContainer {
   font-family: "Zen Maru Gothic", sans-serif;
@@ -15,6 +10,10 @@
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   position: relative;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto; 
 }
 
 /* 背景アニメーション */
