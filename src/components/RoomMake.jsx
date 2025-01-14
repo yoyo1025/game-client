@@ -90,7 +90,7 @@ export default function RoomMake() {
             </div>
           )}
           <button type="submit" className="room-button">
-            登録
+            作成
           </button>
         </div>
       </form>
