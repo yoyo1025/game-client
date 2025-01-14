@@ -8,6 +8,13 @@ export default function RoomMake() {
   const [formErrors, setFormErrors] = useState({});
   const [statusMessage, setStatusMessage] = useState(null);
   const navigate = useNavigate(); // ページ遷移用
+  // ローカルストレージからJWTトークンを取得
+  const token = localStorage.getItem("jwt");
+  if (!token) {
+    alert("ログインが必要です。");
+    navigate("/login");
+    return;
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +32,7 @@ export default function RoomMake() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ roomName: formValues.roomname }),
         });
