@@ -90,11 +90,13 @@
     display: block;
     border: 0;
     border-bottom: 1px solid #4d9bc1;
+    border-radius: 20px;
   }
   .table_design09 tbody th {
     background: #4d9bc1;
     color: #fff;
     text-align: center;
+    border-radius: 20px;
   }
   .table_design09 td::before {
     content: attr(data-label);
