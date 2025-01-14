@@ -59,7 +59,7 @@ const Login = () => {
   
     // 新規会員登録画面へ遷移
     const handleRegisterRedirect = () => {
-      navigate("/register");
+      navigate("/signup");
     };
   
     return (
@@ -106,7 +106,7 @@ const Login = () => {
                 </button>
             </div>
             <div className="registerText">
-            アカウントをお持ちでないですか？ 新規会員登録
+            アカウントをお持ちでないですか？ サインアップは
             <span className="blueLink" onClick={handleRegisterRedirect}>
                 こちら
             </span>
