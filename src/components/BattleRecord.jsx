@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-export default function BattleResult() {
+export default function BattleRecord() {
   const navigate = useNavigate();
 
   const [battleResults, setBattleResults] = useState([]);
