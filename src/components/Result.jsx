@@ -49,6 +49,10 @@ export default function Result() {
         ))}
       </tbody>
     </table>
+    <div className="button-container">
+      <button className="result-button" onClick={() => alert("ログアウトしました")}>ログアウト</button>
+      <button className="result-button" onClick={() => alert("ホーム画面に戻ります")}>ホームへ</button>
+    </div>
   </div>
   );
 }

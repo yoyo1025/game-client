@@ -113,3 +113,34 @@
     border-radius: 100vh;
   }
 }
+
+.button-container {
+  display: flex;
+  justify-content: center; /* 中央寄せ */
+  gap: 1.5rem; /* ボタン間の間隔 */
+  margin-top: 2rem;
+}
+
+.result-button {
+  background: linear-gradient(135deg, #3f60b2, #57f0f5);
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font-size: 1.5rem;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.result-button:hover {
+  background: linear-gradient(135deg, #35539e, #46d3d8);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.result-button:active {
+  transform: scale(0.95);
+}
+
