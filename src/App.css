@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
 
-body, html, button, p {
+body, html, button, p, strong, span {
   font-family: 'Zen Maru Gothic', sans-serif; /* 画面全体にフォント適用 */
   margin: 0; /* 余白をなくす */
   padding: 0;
