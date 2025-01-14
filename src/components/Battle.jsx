@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import SockJS from 'sockjs-client';
 import { Stomp } from "@stomp/stompjs";
 import { UserContext } from "./Home";
+import { useLocation } from "react-router-dom";
 
 
 export default function Battle() {
@@ -26,6 +27,10 @@ export default function Battle() {
   const [event3, setEvent3] = useState(false);
   const [prepareEvent, setPrepareEvent] = useState(false);
   const user = useContext(UserContext);
+  const location = useLocation();
+  const roomId = location.state?.roomId;
+  console.log("ルームID!!!!!!!!!!!!!!!!!" + roomId);
+  
 
   const fetchDiceResult = async () => {
     try {

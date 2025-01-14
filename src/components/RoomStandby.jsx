@@ -32,7 +32,7 @@ export default function RoomStandby() {
         lobbyStompClient.subscribe(`/topic/room/${roomId}/completed`, (message) => {
           console.log(message.body); // "Game Start!" など
           alert("全員が準備完了しました。バトル画面に遷移します！");
-          navigate("/battle"); // バトル画面に遷移
+          navigate("/battle", { state: { roomId: roomId } }); // バトル画面に遷移
         });
 
       })
