@@ -22,6 +22,20 @@ export default function Result() {
   const isDemonWin = demonRecord?.is_win ?? false;
   const winnerMessage = isDemonWin ? "鬼の勝利" : "村人の勝利";
 
+  // ログアウト時の処理
+  const handleLogout = () => {
+    localStorage.removeItem("battleResult"); // 結果データを削除
+    localStorage.removeItem("jwt"); // JWTを削除
+    localStorage.removeItem("userId"); // ユーザーIDを削除
+    window.location.href = "http://localhost:3000/login"; // ログインページへ遷移
+  };
+
+  // ホーム画面へ戻る処理
+  const handleGoHome = () => {
+    localStorage.removeItem("battleResult"); // 結果データのみ削除
+    window.location.href = "http://localhost:3000"; // ホーム画面へ遷移
+  };
+
   return (
     <div className="result-screen">
       <div className="result-container">
@@ -51,8 +65,8 @@ export default function Result() {
             </tbody>
           </table>
           <div className="button-container">
-            <button className="result-button" onClick={() => alert("ログアウトしました")}>ログアウト</button>
-            <button className="result-button" onClick={() => alert("ホーム画面に戻ります")}>ホームへ</button>
+            <button className="result-button" onClick={handleLogout}>ログアウト</button>
+            <button className="result-button" onClick={handleGoHome}>ホームへ</button>
           </div>
       </div>
     </div>
