@@ -13,7 +13,7 @@ export default function BattleResult() {
   useEffect(() => {
 
     // ローカルストレージからJWTトークンを取得
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("jwt");
 
     if (!token) {
       alert("ログインが必要です。");
