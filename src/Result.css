@@ -80,7 +80,7 @@
     display: none;
   }
   .table_design09 tr {
-    background-color: unset;
+    background-color: #f9f9f9; 
   }
   .table_design09 th,
   .table_design09 td {
