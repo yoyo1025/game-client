@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+.result-screen {
+  padding: 2rem;
+  text-align: center;
+  height: 100vh; /* ビューポート全体の高さ */
+  width: 100vw; /* ビューポート全体の幅 */
+  background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff); /* グラデーション色 */
+  background-size: 400% 400%; /* グラデーションの大きさ */
+  animation: gradient 10s ease infinite; /* アニメーションを適用 */
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%; /* 初期位置 */
+  }
+  50% {
+    background-position: 100% 50%; /* 中間位置 */
+  }
+  100% {
+    background-position: 0% 50%; /* 終了位置 */
+  }
+}  
+
+.title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.winner-message {
+  font-size: 2rem;
+  color: #4d9bc1;
+  margin-bottom: 2rem;
+}
+
+.table_design09 {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+  margin: 0 auto;
+}
+.table_design09 tr {
+  background-color: #e6f1f6;
+}
+.table_design09 tr:nth-child(even) {
+  background-color: #fff;
+}
+.table_design09 th,
+.table_design09 td {
+  padding: 1em;
+}
+.table_design09 thead th {
+  background-color: #4d9bc1;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+.table_design09 tbody th {
+  color: #4d9bc1;
+}
+@media screen and (max-width: 787px) {
+  .table_design09 {
+    border-radius: 0;
+    text-align: left;
+  }
+  .table_design09 thead {
+    display: none;
+  }
+  .table_design09 tr {
+    background-color: unset;
+  }
+  .table_design09 th,
+  .table_design09 td {
+    display: block;
+    border: 0;
+    border-bottom: 1px solid #4d9bc1;
+  }
+  .table_design09 tbody th {
+    background: #4d9bc1;
+    color: #fff;
+    text-align: center;
+  }
+  .table_design09 td::before {
+    content: attr(data-label);
+    background-color: #e6f1f6;
+    font-weight: bold;
+    display: inline-block;
+    width: 20%;
+    min-width: 4em;
+    text-align: center;
+    margin-right: 0.5em;
+    padding: 4px;
+    border-radius: 100vh;
+  }
+}

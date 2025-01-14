@@ -216,6 +216,13 @@ export default function Battle() {
         stompClient.subscribe('/topic/end-game', (message) => {
           console.log("ゲーム結果！！！！");
           console.log(message.body);
+          // JSONデータをパース
+          const data = JSON.parse(message.body);
+
+          // 受け取った結果をローカルストレージなどに保存
+          localStorage.setItem("battleResult", JSON.stringify(data));
+
+
           alert("ゲームが終了しました！結果画面へ遷移します！！");
           navigate("/result");
         });
