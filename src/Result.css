@@ -82,6 +82,9 @@
   .table_design09 tr {
     background-color: #f9f9f9; 
   }
+  .table_design09 tr:nth-child(odd) {
+    background-color: #e6f1f6;
+  }
   .table_design09 th,
   .table_design09 td {
     display: block;
@@ -95,7 +98,6 @@
   }
   .table_design09 td::before {
     content: attr(data-label);
-    background-color: #e6f1f6;
     font-weight: bold;
     display: inline-block;
     width: 35%;
