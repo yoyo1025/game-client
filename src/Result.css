@@ -27,14 +27,14 @@
 
 .title {
   font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 .winner-message {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #4d9bc1;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .table_design09 {
@@ -47,6 +47,7 @@
   text-align: center;
   margin: 0 auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
 }
 .table_design09 tr {
   background-color: #e6f1f6;
