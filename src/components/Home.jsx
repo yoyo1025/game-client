@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const randomId = Number(localStorage.getItem("userId"));
 export const user = {
   userId: randomId,
-  userName: `ランダムユーザー${randomId}`,
+  userName: `ユーザー${randomId}`,
 };
 
 export const UserContext = createContext(user);
@@ -27,8 +27,8 @@ export default function Home() {
       <div style={{display: "flex", justifyContent: "space-between", textAlign: "center"}}>
         <div className="player-info">
           <div className="user-info">
-            <p>ID: {user.userId}</p>
-            <p>Name: {user.userName}</p>
+            <div style={{fontSize: "1.2rem"}}>ID: {user.userId}</div>
+            <div style={{fontSize: "1.2rem"}}>Name: {user.userName}</div>
           </div>
         </div>
         <div className="menu">
