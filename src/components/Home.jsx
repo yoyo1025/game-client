@@ -75,13 +75,13 @@ export default function Home() {
       <div className="make-or-join-room">
         <div className="make-room-group">
           <button className="make-room-button" onClick={handleRoomMake}>
-            <img src="make-room-icon.png" alt="Make room icon" />
+            <img src="make-room-icon.png" className="make-room-icon" alt="Make room icon" />
           </button>
           <div>ルーム作成</div>
         </div>
         <div className="join-room-group">
           <button className="join-room-button" onClick={handleRoomJoin}>
-            <img src="join-room-icon.png" alt="Join room icon" />
+            <img src="join-room-icon.png" className="room-join-icon" alt="Join room icon" />
           </button>
           <div>ルーム参加</div>
         </div>

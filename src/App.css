@@ -203,4 +203,19 @@ body, html, button, p, strong, span {
   .join-room-group {
     margin: 0;
   }
+
+  .make-room-icon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .room-join-icon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .make-or-join-room {
+    display: "flex";
+    flex-direction: row;
+  }
 }
