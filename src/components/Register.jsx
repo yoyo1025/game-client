@@ -1,4 +1,4 @@
-import "../App.css";
+import "../Login.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
@@ -6,6 +6,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [playerName, setPlayerName] = useState("");
   const [password, setPassword] = useState("");
+  const [statusMessage, setStatusMessage] = useState(null); 
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // デフォルトのフォーム送信を防ぐ
@@ -41,40 +42,63 @@ export default function Register() {
       alert("登録に失敗しました。もう一度お試しください。");
     }
   };
+
+  const handleLoginRedirect = () => {
+    navigate("/login");
+  };
   
 
   return (
-    <div className="register-form">
-      <h2>新規アカウント登録</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="playerName">プレイヤー名</label>
-          <input
-            type="text"
-            id="playerName"
-            value={playerName}
-            onChange={(e) => setPlayerName(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">パスワード</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button className="register-button" type="submit">
-          登録
-        </button>
-      </form>
-      <button
-        className="back-button"
-        onClick={() => navigate("/login")}
-      >
-        ログイン画面に戻る
-      </button>
-    </div>
+    <div className="formContainer">
+        <form onSubmit={handleSubmit}>
+          <div className="imgContainer">
+            <img src="/game-title-image.png" alt="sample" className="sampleImage" />
+          </div>
+          <h1 className="login-h1">サインアップ</h1>
+          <hr />
+          <div className="uiForm">
+            <div className="formField">
+              <label>ユーザー名</label>
+              <input
+                type="text"
+                placeholder="ユーザー名"
+                value={playerName}
+                onChange={(e) => setPlayerName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="formField">
+              <label>パスワード</label>
+              <input
+                type="password"
+                placeholder="パスワード"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            {statusMessage && (
+              <div
+                className={`statusMessage ${
+                  statusMessage.type === "success" ? "success" : "error"
+                }`}
+              >
+                {statusMessage.text}
+              </div>
+            )}
+            <div className="buttonGroup">
+                <button type="submit" className="loginButton">
+                  サインアップ
+                </button>
+            </div>
+            <div className="registerText">
+            既にアカウントをお持ちですか？ ログインは
+            <span className="blueLink" onClick={handleLoginRedirect}>
+                こちら
+            </span>
+            </div>
+          </div>
+        </form>
+      </div>
   );
 }

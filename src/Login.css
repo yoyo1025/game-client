@@ -1,0 +1,197 @@
+
+.formContainer {
+  font-family: "Zen Maru Gothic", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto; 
+}
+
+/* 背景アニメーション */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* フォーム */
+.formContainer form {
+  width: 70%;
+  max-width: 450px;
+  border: 1px solid #dfefef;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 12px 17px -7px #383838;
+  border-radius: 15px;
+}
+
+/* uiForm: 縦並び */
+.uiForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.imgContainer {
+  text-align: center;
+}
+
+.sampleImage {
+  max-width: 250px; /* 必要に応じて調整 */
+  height: auto; 
+  display: block;
+  margin: 0 auto;
+}
+
+.login-h1 {
+  text-align: center;
+  margin-top: 0;  /* 上の余白を削除 */
+  margin-bottom: 0px; /* 必要に応じて余白を小さく調整 */
+  font-size: 2rem;
+}
+
+
+/* フォームの各項目 */
+.formField {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.formField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.formField input {
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+}
+
+.formField input:focus {
+  outline: none;
+}
+
+/* ボタン2つ: ログイン & 新規登録 */
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.loginButton {
+  background: linear-gradient(135deg, #3f60b2, #57f0f5);
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font-size: 1.5rem;
+  font-family: "Zen Maru Gothic", sans-serif;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.loginButton:hover {
+  background: linear-gradient(135deg, #35539e, #46d3d8);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/* 成功/失敗メッセージ */
+.statusMessage {
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  background-color: #f5f5f5;
+  max-width: 400px;
+  margin: 10px 0; /* 送信ボタンとの間隔 */
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.blueLink {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.blueLink:hover {
+  color: darkblue; /* ホバー時に色を変えるなど */
+}
+
+/* フェードイン/アウトなどのアニメーション */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 787px) {
+  .formContainer form {
+    width: 85%;
+    padding: 20px;
+  }
+
+  .buttonGroup {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .loginButton{
+    width: 100%;
+  }
+}
