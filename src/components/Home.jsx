@@ -23,25 +23,33 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <div className="menu">
-        <div className="menu-item">
-          <button className="menu-botton">
-            <img src="rule-icon.png" className="menu-icon" alt="Rule Icon" />
-          </button>
-          <div className="menu-description">ルール</div>
+    <div className="homeContainer"> 
+      <div style={{display: "flex", justifyContent: "space-between", textAlign: "center"}}>
+        <div className="player-info">
+          <div className="user-info">
+            <p>ID: {user.userId}</p>
+            <p>Name: {user.userName}</p>
+          </div>
         </div>
-        <div className="menu-item">
-          <button className="menu-botton">
-            <img src="battle-record-icon.png" className="menu-icon" alt="Battle Record Icon" />
-          </button>
-          <div className="menu-description">戦績</div>
-        </div>
-        <div className="menu-item">
-          <button className="menu-botton">
-            <img src="logout-icon.png" className="menu-icon" alt="Logout Icon" />
-          </button>
-          <div className="menu-description">ログアウト</div>
+        <div className="menu">
+          <div className="menu-item">
+            <button className="menu-botton">
+              <img src="rule-icon.png" className="menu-icon" alt="Rule Icon" />
+            </button>
+            <div className="menu-description">ルール</div>
+          </div>
+          <div className="menu-item">
+            <button className="menu-botton">
+              <img src="battle-record-icon.png" className="menu-icon" alt="Battle Record Icon" />
+            </button>
+            <div className="menu-description">戦績</div>
+          </div>
+          <div className="menu-item">
+            <button className="menu-botton">
+              <img src="logout-icon.png" className="menu-icon" alt="Logout Icon" />
+            </button>
+            <div className="menu-description">ログアウト</div>
+          </div>
         </div>
       </div>
       <div className="make-or-join-room">
@@ -60,12 +68,6 @@ export default function Home() {
           <div>
             ルーム参加
           </div>
-        </div>
-      </div>
-      <div className="player-info">
-        <div>
-          <p>ID: {user.userId}</p>
-          <p>Name: {user.userName}</p>
         </div>
       </div>
     </div>

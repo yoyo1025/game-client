@@ -7,10 +7,45 @@ body, html, button, p, strong, span {
   box-sizing: border-box;
 }
 
+.homeContainer {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(270deg, #cbfbcf, #ffdfc6, #ffd9f5, #cfe5ff);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto; 
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.user-info {
+  border: 1px solid #dfefefc9;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.503);
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 12px 17px -7px #383838;
+  border-radius: 15px;
+}
+
 
 .menu {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
 }
 
 .menu-item {
