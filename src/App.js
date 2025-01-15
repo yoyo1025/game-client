@@ -16,7 +16,7 @@ export default function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/register" element={<Register />}/>
+        <Route path="/signup" element={<Register />}/>
         <Route path="/room-make" element={<RoomMake />}/>
         <Route path="/room-password" element={<RoomPassword />} />
         <Route path="/room-join" element={<RoomJoin />}/>

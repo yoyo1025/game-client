@@ -18,10 +18,10 @@ export default function RoomPassword() {
             <p className="successMessage">パスワードは「{password}」です。</p>
           </div>
           <div className="buttonGroup">
-            <button className="submitButton2" onClick={() => navigate("/")}>
+            <button className="room-button" onClick={() => navigate("/")}>
               ホームに戻る
             </button>
-            <button className="submitButton2" onClick={() => navigate("/room-join")}>
+            <button className="room-button" onClick={() => navigate("/room-join")}>
               ルーム参加
             </button>
           </div>
