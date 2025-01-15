@@ -39,7 +39,7 @@ export default function Field({
   const handleMove = async (x, y) => {
     console.log(`Moving to (${x}, ${y})`);
     try {
-      const res = await fetch("http://localhost:8000/api/move", {
+      const res = await fetch("http://172.31.110.75:8000/api/move", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

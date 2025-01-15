@@ -11,7 +11,7 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault(); // デフォルトのフォーム送信を防ぐ
   
-    const url = "http://localhost:8080/signup"; // サーバーのエンドポイントURL
+    const url = "http://172.31.110.75:8080/signup"; // サーバーのエンドポイントURL
   
     const options = {
       method: "POST",

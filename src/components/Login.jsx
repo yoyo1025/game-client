@@ -12,7 +12,7 @@ const Login = () => {
     const handleLogin = async (event) => {
       event.preventDefault(); // デフォルトのフォーム送信を防ぐ
   
-      const url = "http://localhost:8080/login"; // サーバーのエンドポイントURL
+      const url = "http://172.31.110.75:8080/login"; // サーバーのエンドポイントURL
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },

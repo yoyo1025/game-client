@@ -22,7 +22,7 @@ export default function BattleRecord() {
     }
 
     const fetchBattleResults = async () => {
-      const url = "http://localhost:8080/battlerecord/{id}"; 
+      const url = "http://172.31.110.75:8080/battlerecord/{id}"; 
       const options = {
         method: "GET",
         headers: {

@@ -28,7 +28,7 @@ export default function RoomMake() {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await fetch("http://localhost:8080/make-room", {
+        const response = await fetch("http://172.31.110.75:8080/make-room", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

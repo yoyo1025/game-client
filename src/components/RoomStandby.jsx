@@ -17,7 +17,7 @@ export default function RoomStandby() {
     let lobbyStompClient = null;
     if (!lobbyStompClient) {
       // 初回接続先
-      lobbyStompClient = Stomp.over(() => new SockJS("http://localhost:8080/lobby-websocket"));
+      lobbyStompClient = Stomp.over(() => new SockJS("http://172.31.110.75:8080/lobby-websocket"));
       lobbyStompClient.connect({ 
         Authorization: `Bearer ${token}`,
         roomId: roomId

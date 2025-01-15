@@ -34,7 +34,7 @@ export default function Battle() {
 
   const fetchDiceResult = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/dice',{ 
+      const res = await fetch('http://172.31.110.75:8000/api/dice',{ 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ export default function Battle() {
 
   const fetchGameStateEarliest = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/start-game', { method: 'GET' });
+      const res = await fetch('http://172.31.110.75:8000/api/start-game', { method: 'GET' });
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -86,7 +86,7 @@ export default function Battle() {
 
   const fetchGameStateLater = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/game-state', { method: 'GET' });
+      const res = await fetch('http://172.31.110.75:8000/api/game-state', { method: 'GET' });
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -113,7 +113,7 @@ export default function Battle() {
     let stompClient = null;
     if (!stompClient) {
       // 初回接続先
-      stompClient = Stomp.over(() => new SockJS("http://localhost:8000/app-websocket"));
+      stompClient = Stomp.over(() => new SockJS("http://172.31.110.75:8000/app-websocket"));
       stompClient.connect({ userId: "myUserId" }, () => {
         console.log("Connected to WebSocket");
 

@@ -28,7 +28,7 @@ export default function RoomJoin() {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await fetch("http://localhost:8080/room-join", {
+        const response = await fetch("http://172.31.110.75:8080/room-join", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

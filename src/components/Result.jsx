@@ -27,13 +27,13 @@ export default function Result() {
     localStorage.removeItem("battleResult"); // 結果データを削除
     localStorage.removeItem("jwt"); // JWTを削除
     localStorage.removeItem("userId"); // ユーザーIDを削除
-    window.location.href = "http://localhost:3000/login"; // ログインページへ遷移
+    window.location.href = "http://172.31.110.75:3000/login"; // ログインページへ遷移
   };
 
   // ホーム画面へ戻る処理
   const handleGoHome = () => {
     localStorage.removeItem("battleResult"); // 結果データのみ削除
-    window.location.href = "http://localhost:3000"; // ホーム画面へ遷移
+    window.location.href = "http://172.31.110.75:3000"; // ホーム画面へ遷移
   };
 
   return (
